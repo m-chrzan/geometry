@@ -86,9 +86,22 @@ void testRectangleArea() {
     finishTest();
 }
 
+void testRectangleMoveByVector() {
+    beginTest();
+
+    Rectangle r(7, 6);
+    Vector v(1, 1);
+    r += v;
+    checkEqual<long long>(r.pos().x(), 1, "Rectangle x coordinate moved correctly.");
+    checkEqual<long long>(r.pos().y(), 1, "Rectangle x coordinate moved correctly.");
+
+    finishTest();
+}
+
 int main() {
-    testRectangleConstructors();
+//    testRectangleConstructors();
     testRectangleEquality();
     testRectangleReflection();
     testRectangleArea();
+    testRectangleMoveByVector();
 }

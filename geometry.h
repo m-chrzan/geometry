@@ -1,6 +1,8 @@
 #ifndef GEOMETRY_H_
 #define GEOMETRY_H_
 
+class Vector;
+
 template <class T>
 class AbstractPair {
 public:
@@ -9,6 +11,7 @@ public:
     long long x() const { return _x; }
     long long y() const { return _y; }
     bool operator==(AbstractPair<T> const& other) const;
+    T& operator+=(Vector const& v);
 private:
     long long _x;
     long long _y;

@@ -11,7 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1aab49ee-5012-4b9d-b7c5-e1caddc3d614" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/geometry.cc" afterPath="$PROJECT_DIR$/geometry.cc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rectangles_test.cc" afterPath="$PROJECT_DIR$/rectangles_test.cc" />
     </list>
     <ignored path="zadanie3.iws" />
@@ -77,8 +76,8 @@
       <file leaf-file-name="rectangles_test.cc" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rectangles_test.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="79" column="4" selection-start-line="79" selection-start-column="4" selection-end-line="79" selection-end-column="4" />
+            <state relative-caret-position="708">
+              <caret line="80" column="17" selection-start-line="80" selection-start-column="17" selection-end-line="80" selection-end-column="17" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -320,7 +319,7 @@
       <option name="presentableId" value="Default" />
       <updated>1478867860196</updated>
       <workItem from="1478867861823" duration="16951000" />
-      <workItem from="1478892122315" duration="8997000" />
+      <workItem from="1478892122315" duration="9675000" />
     </task>
     <task id="LOCAL-00001" summary="Add rectangle splits&#10;">
       <created>1478897813808</created>
@@ -336,15 +335,22 @@
       <option name="project" value="LOCAL" />
       <updated>1478900645961</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add vertical Rectangles split">
+      <created>1478901133574</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1478901133574</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25948000" />
+    <option name="totallyTimeSpent" value="26626000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="954" height="1080" extended-state="4" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19012605" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -398,7 +404,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add rectangle splits&#10;" />
     <MESSAGE value="Add horizontal Rectangles split" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add horizontal Rectangles split" />
+    <MESSAGE value="Add vertical Rectangles split" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add vertical Rectangles split" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -516,8 +523,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rectangles_test.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="79" column="4" selection-start-line="79" selection-start-column="4" selection-end-line="79" selection-end-column="4" />
+        <state relative-caret-position="708">
+          <caret line="80" column="17" selection-start-line="80" selection-start-column="17" selection-end-line="80" selection-end-column="17" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>

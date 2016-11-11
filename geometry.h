@@ -76,6 +76,9 @@ public:
 
     long long area() const { return _width * _height; }
 
+    std::pair<Rectangle, Rectangle> split_horizontally(int place);
+    std::pair<Rectangle, Rectangle> split_vertically(int place);
+
 private:
     long long _width;
     long long _height;

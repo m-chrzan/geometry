@@ -49,8 +49,23 @@ Rectangle &Rectangle::operator+=(Vector const &vec) {
     return *this;
 }
 
-Rectangles::Rectangles(std::initializer_list<Rectangle> rects) {
-    Rectangle test(0,0); // TODO: Czy sprawdzanie typu nie jest przegieciem?
+std::pair<Rectangle, Rectangle> Rectangle::split_horizontally(int place) {
+    assert(place < this->height());
+    Rectangle r1(this->width(), place, this->pos());
+    Rectangle r2(this->width(), this->height() - place, this->pos());
+    return std::make_pair(r1, r2);
+}
+
+std::pair<Rectangle, Rectangle> Rectangle::split_vertically(int place) {
+    assert(place < this->width());
+    Rectangle r1(place, this->height(), this->pos());
+    Rectangle r2(this->width() - place, this->height(), this->pos());
+    return std::make_pair(r1, r2);
+}
+
+
+Rectangles::Rectangles(std::initializer_list <Rectangle> rects) {
+    Rectangle test(0, 0); // TODO: Czy sprawdzanie typu nie jest przegieciem?
     for (auto r : rects) {
         assert(typeid(r).name() == typeid(test).name());
         _rectangles.push_back(r);
@@ -64,7 +79,7 @@ Rectangle &Rectangles::operator[](int i) {
 }
 
 bool Rectangles::operator==(Rectangles const &others) const {
-    Rectangles const& thisRectangles = *this; // TODO: Czy tak jest ładnie?
+    Rectangles const &thisRectangles = *this; // TODO: Czy tak jest ładnie?
     if (this->size() != others.size()) {
         return false;
     }

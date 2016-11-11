@@ -93,7 +93,24 @@ void testRectangleMoveByVector() {
     Vector v(1, 1);
     r += v;
     checkEqual<long long>(r.pos().x(), 1, "Rectangle x coordinate moved correctly.");
-    checkEqual<long long>(r.pos().y(), 1, "Rectangle x coordinate moved correctly.");
+    checkEqual<long long>(r.pos().y(), 1, "Rectangle y coordinate moved correctly.");
+
+    finishTest();
+}
+
+void testRectangleSplit() {
+    beginTest();
+
+    Rectangle r(7, 6);
+    checkEqual<long long>(r.split_horizontally(1).first.height(), 1,
+                          "Rectangle was splitted horizontally correctly. (1/2)");
+    checkEqual<long long>(r.split_horizontally(1).second.height(), 6 - 1,
+                          "Rectangle was splitted horizontally correctly. (2/2)");
+    checkEqual<long long>(r.split_vertically(1).first.width(), 1,
+                          "Rectangle was splitted vertically correctly. (1/2)");
+    checkEqual<long long>(r.split_vertically(1).second.width(), 7 - 1,
+                          "Rectangle was splitted vertically correctly. (2/2)");
+
 
     finishTest();
 }
@@ -104,4 +121,5 @@ int main() {
     testRectangleReflection();
     testRectangleArea();
     testRectangleMoveByVector();
+    testRectangleSplit();
 }

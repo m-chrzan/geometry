@@ -72,10 +72,11 @@ Rectangles::Rectangles(std::initializer_list <Rectangle> rects) {
     }
 }
 
-Rectangle &Rectangles::operator[](int i) {
+Rectangle& Rectangles::operator[](int i) {
+    // TODO: Ta funkcja robi coś dziwnego - zwraca Rectangles zamiast Rectangle
     // TODO: sprawdzić, jak mają być numerowane prostokąty - od zera czy od jeden?
     assert(i < this->size() && i >= 0);
-    return _rectangles.at(i);
+    return this->_rectangles[i];
 }
 
 bool Rectangles::operator==(Rectangles const &others) const {
@@ -96,4 +97,19 @@ Rectangles &Rectangles::operator+=(Vector const &vec) {
         this->_rectangles.at(i) += vec; // TODO: Jak robie tutaj this[i] += vec to nie działa. WHY?!
     }
     return *this;
+}
+
+void Rectangles::replace_rectangle_with_split(int idx, std::pair<Rectangle, Rectangle> const &splitted)
+
+void Rectangles::split_horizontally(int idx, int place) {
+    Rectangle r = this->_rectangles[idx];
+    std::pair<Rectangle, Rectangle> splitted = r.split_horizontally(place);
+    auto it = this->_rectangles.begin();
+    this->_rectangles.erase(it + idx);
+    this->_rectangles.insert(it + idx, splitted.second);
+    this->_rectangles.insert(it + idx, splitted.first);
+}
+
+void Rectangles::split_vertically(int idx, int place) {
+
 }

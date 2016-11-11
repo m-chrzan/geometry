@@ -52,8 +52,26 @@ void testRectanglesMoveByVector() {
     Rectangles r({Rectangle(1,1), Rectangle(2,2)});
     Vector v(1, 1);
     r += v;
-    checkEqual<long long>(r[0].pos().x(), 1, "Rectangle first element was moved by vector.");
-    checkEqual<long long>(r[1].pos().x(), 1, "Rectangle second element was moved by vector.");
+    checkEqual<long long>(r[0].pos().x(), 1, "Rectangles first element was moved by vector.");
+    checkEqual<long long>(r[1].pos().x(), 1, "Rectangles second element was moved by vector.");
+
+    finishTest();
+}
+
+void testRectanglesSplit() {
+    beginTest();
+
+    Rectangle r1(2, 10);
+    Rectangle r2(2, 20);
+    Rectangle r3(2, 30);
+    Rectangles r({r1, r2, r3});
+    r.split_horizontally(1, 1);
+
+    checkEqual<long long>(r.size(), 4, "Rectangles size increased with splitting.");
+    checkEqual<Rectangle>(r[1], r2.split_horizontally(1).first,
+                          "First rectangle from the split is correct.");
+    checkEqual<Rectangle>(r[2], r2.split_horizontally(1).second,
+                          "Second rectangle from the split is correct.");
 
     finishTest();
 }
@@ -63,5 +81,6 @@ int main() {
     testRectanglesGetRectangle();
     testRectanglesEquality();
     testRectanglesMoveByVector();
+    testRectanglesSplit();
 }
 

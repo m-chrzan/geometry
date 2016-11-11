@@ -17,3 +17,8 @@ T& AbstractPair<T>::operator+=(Vector const& v) {
     _y += v.y();
     return *static_cast<T*>(this);
 }
+
+Position const& Position::origin() {
+    static Position o(0, 0);
+    return o;
+}

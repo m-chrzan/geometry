@@ -22,6 +22,7 @@ class Position : public AbstractPair<Position> {
 public:
     Position(long long x, long long y) : AbstractPair(x, y) {}
     ~Position() {}
+    static Position const& origin();
 };
 
 class Vector : public AbstractPair<Vector> {

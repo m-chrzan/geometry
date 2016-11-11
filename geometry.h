@@ -12,6 +12,7 @@ public:
     long long y() const { return _y; }
     bool operator==(AbstractPair<T> const& other) const;
     T& operator+=(Vector const& v);
+    T reflection() const { return T(_y, _x); }
 private:
     long long _x;
     long long _y;

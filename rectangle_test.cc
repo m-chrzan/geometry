@@ -70,8 +70,25 @@ void testRectangleReflection() {
     finishTest();
 }
 
+void testRectangleArea() {
+    beginTest();
+
+    Rectangle r(7, 6);
+    checkEqual<long long>(r.area(), 42, "Correctly calculates area");
+    checkEqual<long long>(r.area(), r.reflection().area(),
+        "Reflected Rectangle has the same area.");
+
+    Rectangle s(0, 5);
+    Rectangle t(5, 0);
+    checkEqual<long long>(s.area(), 0, "Rectangle with no width has 0 area.");
+    checkEqual<long long>(t.area(), 0, "Rectangle with no height has 0 area.");
+
+    finishTest();
+}
+
 int main() {
     testRectangleConstructors();
     testRectangleEquality();
     testRectangleReflection();
+    testRectangleArea();
 }

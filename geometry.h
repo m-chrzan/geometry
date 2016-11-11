@@ -51,6 +51,7 @@ public:
     Rectangle reflection() const {
         return Rectangle(_height, _width, _pos.reflection());
     }
+    long long area() const { return _width * _height; }
 private:
     long long _width;
     long long _height;

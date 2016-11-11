@@ -52,7 +52,7 @@ public:
     Rectangle(long long width, long long height) : _width(width),
                                                    _height(height), _pos(Position::origin()) {}
 
-    Rectangle(Rectangle const& rect) : _width(rect._width),
+    Rectangle(Rectangle const &rect) : _width(rect._width),
                                        _height(rect._height), _pos(rect._pos) {}
 
     Rectangle(Rectangle &&rect) : _width(rect._width), _height(rect._height),
@@ -84,21 +84,22 @@ private:
 
 class Rectangles {
 public:
-    Rectangles(Rectangle rect, ...);
+    Rectangles(std::initializer_list <Rectangle> rects);
+
+    Rectangles() {}
+
+    long long size() const { return _rectangles.size(); };
+
+    Rectangle &operator[](int i);
+
+    bool operator==(Rectangles const &others) const;
+
+    Rectangles &operator+=(Vector const &vec);
+
 private:
-    std::vector<Rectangle> _rectangles;
-    long long _size;
+    std::vector <Rectangle> _rectangles;
+
+    Rectangle operator[](int i) const { return _rectangles.at(i); };
 };
 
-
-//class Rectangles {
-//public:
-//    Rectangles() {}
-//    Rectangles(std::vector<Rectangle> const& rectangles);
-//    Rectangle& operator[](int i);
-//    int size() const { return _rectangles.size(); }
-//    bool operator==(Rectangles const& others) const;
-//private:
-//    std::vector<Rectangle> _rectangles;
-//};
 #endif

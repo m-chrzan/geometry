@@ -1,4 +1,6 @@
-#include <cstdarg>
+#include <cassert>
+#include <iostream>
+#include <typeinfo>
 #include "geometry.h"
 
 template
@@ -27,7 +29,7 @@ Position const &Position::origin() {
     return o;
 }
 
-Rectangle &Rectangle::operator=(Rectangle &&rect) { // TODO: Sprawdzić, czy nie przypisujemy sami siebie
+Rectangle &Rectangle::operator=(Rectangle &&rect) {
     if (this == &rect) {
         return *this;
     }
@@ -47,23 +49,36 @@ Rectangle &Rectangle::operator+=(Vector const &vec) {
     return *this;
 }
 
-Rectangles::Rectangles(Rectangle rect, ...) {
-
+Rectangles::Rectangles(std::initializer_list<Rectangle> rects) {
+    Rectangle test(0,0); // TODO: Czy sprawdzanie typu nie jest przegieciem?
+    for (auto r : rects) {
+        assert(typeid(r).name() == typeid(test).name());
+        _rectangles.push_back(r);
+    }
 }
 
-//Rectangle& Rectangles::operator[](int i) {
-//    assert(i <= this.size());
-//    return this->_rectangles[i - 1]; // TODO: sprawdzić, jak mają być numerowane prostokąty - od zera czy od jeden?
-//}
-//
-//bool Rectangles::operator==(Rectangles const& others) const {
-//    if (this->size() != others.size()) {
-//        return false;
-//    }
-//    for (int i = 0; i < this->size(); i++) {
-//        if (!(this[i] == others[i])) {
-//            return false;
-//        }
-//    }
-//    return true;
-//}
+Rectangle &Rectangles::operator[](int i) {
+    // TODO: sprawdzić, jak mają być numerowane prostokąty - od zera czy od jeden?
+    assert(i < this->size() && i >= 0);
+    return _rectangles.at(i);
+}
+
+bool Rectangles::operator==(Rectangles const &others) const {
+    Rectangles const& thisRectangles = *this; // TODO: Czy tak jest ładnie?
+    if (this->size() != others.size()) {
+        return false;
+    }
+    for (int i = 0; i < this->size(); i++) {
+        if (!(thisRectangles[i] == others[i])) {
+            return false;
+        }
+    }
+    return true;
+}
+
+Rectangles &Rectangles::operator+=(Vector const &vec) {
+    for (int i = 0; i < this->size(); i++) {
+        this->_rectangles.at(i) += vec; // TODO: Jak robie tutaj this[i] += vec to nie działa. WHY?!
+    }
+    return *this;
+}

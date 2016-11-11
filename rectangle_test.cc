@@ -99,7 +99,7 @@ void testRectangleMoveByVector() {
 }
 
 int main() {
-//    testRectangleConstructors();
+    testRectangleConstructors();
     testRectangleEquality();
     testRectangleReflection();
     testRectangleArea();

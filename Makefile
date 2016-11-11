@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-Wall -g
+CXXFLAGS=-Wall -g -std=c++0x
 
 .PHONY: clean all
 

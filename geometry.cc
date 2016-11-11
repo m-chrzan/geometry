@@ -1,3 +1,4 @@
+#include <cstdarg>
 #include "geometry.h"
 
 template
@@ -26,12 +27,15 @@ Position const &Position::origin() {
     return o;
 }
 
-//Rectangle &Rectangle::operator=(Rectangle &&rect) {
-//    _pos = std::move(rect._pos);
-//    _width = rect._width;
-//    _height = rect._height;
-//    return *this;
-//}
+Rectangle &Rectangle::operator=(Rectangle &&rect) { // TODO: Sprawdzić, czy nie przypisujemy sami siebie
+    if (this == &rect) {
+        return *this;
+    }
+    _pos = std::move(rect._pos);
+    _width = rect._width;
+    _height = rect._height;
+    return *this;
+}
 
 bool Rectangle::operator==(Rectangle const &other) const {
     return this->_width == other._width && this->_height == other._height &&
@@ -41,6 +45,10 @@ bool Rectangle::operator==(Rectangle const &other) const {
 Rectangle &Rectangle::operator+=(Vector const &vec) {
     _pos += vec;
     return *this;
+}
+
+Rectangles::Rectangles(Rectangle rect, ...) {
+
 }
 
 //Rectangle& Rectangles::operator[](int i) {

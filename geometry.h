@@ -2,6 +2,7 @@
 #define GEOMETRY_H_
 
 #include <utility>
+#include <vector>
 
 class Vector;
 
@@ -54,10 +55,10 @@ public:
     Rectangle(Rectangle const& rect) : _width(rect._width),
                                        _height(rect._height), _pos(rect._pos) {}
 
-//    Rectangle(Rectangle&& rect) : _width(rect._width), _height(rect._height),
-//                                  _pos(std::move(rect._pos)) {}
-//
-//    Rectangle &operator=(Rectangle&& rect);
+    Rectangle(Rectangle &&rect) : _width(rect._width), _height(rect._height),
+                                  _pos(std::move(rect._pos)) {}
+
+    Rectangle &operator=(Rectangle &&rect);
 
     long long width() const { return _width; }
 
@@ -79,6 +80,14 @@ private:
     long long _width;
     long long _height;
     Position _pos;
+};
+
+class Rectangles {
+public:
+    Rectangles(Rectangle rect, ...);
+private:
+    std::vector<Rectangle> _rectangles;
+    long long _size;
 };
 
 

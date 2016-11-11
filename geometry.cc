@@ -22,3 +22,10 @@ Position const& Position::origin() {
     static Position o(0, 0);
     return o;
 }
+
+Rectangle& Rectangle::operator=(Rectangle&& rect) {
+    _pos = std::move(rect._pos);
+    _width = rect._width;
+    _height = rect._height;
+    return *this;
+}

@@ -1,6 +1,8 @@
 #ifndef GEOMETRY_H_
 #define GEOMETRY_H_
 
+#include <utility>
+
 class Vector;
 
 template <class T>
@@ -35,6 +37,11 @@ class Rectangle {
 public:
     Rectangle(long long width, long long height, Position pos) :
         _width(width), _height(height), _pos(pos) {}
+    Rectangle(Rectangle const& rect) : _width(rect._width),
+        _height(rect._height), _pos(rect._pos) {}
+    Rectangle(Rectangle&& rect) : _width(rect._width), _height(rect._height),
+         _pos(std::move(rect._pos)) {}
+    Rectangle& operator=(Rectangle&& rect);
     long long width() const { return _width; }
     long long height() const { return _height; }
     Position pos() const { return _pos; }

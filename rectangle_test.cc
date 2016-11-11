@@ -49,7 +49,29 @@ void testRectangleEquality() {
     finishTest();
 }
 
+void testRectangleReflection() {
+    beginTest();
+
+    Rectangle r(3, 4, Position(2, 3));
+    Rectangle s = r.reflection();
+
+    checkEqual<long long>(s.width(), 4, "Width set correctly.");
+    checkEqual<long long>(s.height(), 3, "Height set correctly.");
+    checkEqual<Position>(s.pos(), Position(3, 2), "Position set correctly.");
+
+    Rectangle t = Rectangle(12, 2, Position(-5, -5)).reflection();
+    checkEqual<Position>(t.pos(), Position(-5, -5),
+        "Rectangle on x = y doesn't change position.");
+
+    Rectangle sq(1009, 1009, Position(42, 42));
+    checkEqual<Rectangle>(sq, sq.reflection(),
+        "Square on x = y doesn't change.");
+
+    finishTest();
+}
+
 int main() {
     testRectangleConstructors();
     testRectangleEquality();
+    testRectangleReflection();
 }

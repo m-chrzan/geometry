@@ -48,6 +48,9 @@ public:
     long long height() const { return _height; }
     Position pos() const { return _pos; }
     bool operator==(Rectangle const& other) const;
+    Rectangle reflection() const {
+        return Rectangle(_height, _width, _pos.reflection());
+    }
 private:
     long long _width;
     long long _height;

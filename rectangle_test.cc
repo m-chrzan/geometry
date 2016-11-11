@@ -20,6 +20,11 @@ void testRectangleConstructors() {
     checkEqual<long long>(s.height(), 5, "Set height correctly.");
     checkEqual<Position>(s.pos(), Position(-1, 3), "Set position correctly.");
 
+    Rectangle u(10, 20);
+    checkEqual<long long>(u.width(), 10, "Set width correctly.");
+    checkEqual<long long>(u.height(), 20, "Set height correctly.");
+    checkEqual<Position>(u.pos(), Position::origin(), "Set position correctly.");
+
     finishTest();
 }
 

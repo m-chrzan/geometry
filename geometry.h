@@ -37,6 +37,8 @@ class Rectangle {
 public:
     Rectangle(long long width, long long height, Position pos) :
         _width(width), _height(height), _pos(pos) {}
+    Rectangle(long long width, long long height) : _width(width),
+        _height(height), _pos(Position::origin()) {}
     Rectangle(Rectangle const& rect) : _width(rect._width),
         _height(rect._height), _pos(rect._pos) {}
     Rectangle(Rectangle&& rect) : _width(rect._width), _height(rect._height),

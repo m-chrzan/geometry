@@ -49,14 +49,14 @@ Rectangle &Rectangle::operator+=(Vector const &vec) {
     return *this;
 }
 
-std::pair<Rectangle, Rectangle> Rectangle::split_horizontally(int place) {
+std::pair <Rectangle, Rectangle> Rectangle::split_horizontally(int place) {
     assert(place < this->height());
     Rectangle r1(this->width(), place, this->pos());
     Rectangle r2(this->width(), this->height() - place, this->pos());
     return std::make_pair(r1, r2);
 }
 
-std::pair<Rectangle, Rectangle> Rectangle::split_vertically(int place) {
+std::pair <Rectangle, Rectangle> Rectangle::split_vertically(int place) {
     assert(place < this->width());
     Rectangle r1(place, this->height(), this->pos());
     Rectangle r2(this->width() - place, this->height(), this->pos());
@@ -72,7 +72,7 @@ Rectangles::Rectangles(std::initializer_list <Rectangle> rects) {
     }
 }
 
-Rectangle& Rectangles::operator[](int i) {
+Rectangle &Rectangles::operator[](int i) {
     // TODO: Ta funkcja robi coś dziwnego - zwraca Rectangles zamiast Rectangle
     // TODO: sprawdzić, jak mają być numerowane prostokąty - od zera czy od jeden?
     assert(i < this->size() && i >= 0);
@@ -100,7 +100,7 @@ Rectangles &Rectangles::operator+=(Vector const &vec) {
 }
 
 void Rectangles::replace_rectangle_with_split(int idx,
-                                              std::pair<Rectangle, Rectangle> const &splitted) {
+                                              std::pair <Rectangle, Rectangle> const &splitted) {
     auto it = this->_rectangles.begin();
     this->_rectangles.erase(it + idx);
     this->_rectangles.insert(it + idx, splitted.second);
@@ -109,13 +109,13 @@ void Rectangles::replace_rectangle_with_split(int idx,
 
 void Rectangles::split_horizontally(int idx, int place) {
     Rectangle r = this->_rectangles[idx];
-    std::pair<Rectangle, Rectangle> splitted = r.split_horizontally(place);
+    std::pair <Rectangle, Rectangle> splitted = r.split_horizontally(place);
     this->replace_rectangle_with_split(idx, splitted);
 }
 
 void Rectangles::split_vertically(int idx, int place) {
     Rectangle r = this->_rectangles[idx];
-    std::pair<Rectangle, Rectangle> splitted = r.split_vertically(place);
+    std::pair <Rectangle, Rectangle> splitted = r.split_vertically(place);
     this->replace_rectangle_with_split(idx, splitted);
 
 }

@@ -76,8 +76,9 @@ public:
 
     long long area() const { return _width * _height; }
 
-    std::pair<Rectangle, Rectangle> split_horizontally(int place);
-    std::pair<Rectangle, Rectangle> split_vertically(int place);
+    std::pair <Rectangle, Rectangle> split_horizontally(int place);
+
+    std::pair <Rectangle, Rectangle> split_vertically(int place);
 
     ~Rectangle() {}
 
@@ -102,14 +103,17 @@ public:
     Rectangles &operator+=(Vector const &vec);
 
     void split_horizontally(int idx, int place);
+
     void split_vertically(int idx, int place);
 
     ~Rectangles() {}
 
 private:
     std::vector <Rectangle> _rectangles;
+
     Rectangle operator[](int i) const { return _rectangles.at(i); };
-    void replace_rectangle_with_split(int idx, std::pair<Rectangle, Rectangle> const &splitted);
+
+    void replace_rectangle_with_split(int idx, std::pair <Rectangle, Rectangle> const &splitted);
 };
 
 #endif

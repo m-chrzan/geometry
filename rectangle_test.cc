@@ -28,6 +28,28 @@ void testRectangleConstructors() {
     finishTest();
 }
 
+void testRectangleEquality() {
+    Rectangle r(42, -24, Position(0, 0));
+    Rectangle r2(r);
+    Rectangle s(42, -24, Position::origin());
+    Rectangle t(42, -24);
+
+    checkEqual<Rectangle>(r, r, "A Rectangle is equal to itself.");
+    checkEqual<Rectangle>(r, r2, "A Rectangle is equal to its copy.");
+    checkEqual<Rectangle>(r, s,
+        "Rectangles initialized with equivalent values are equivalent.");
+
+    Rectangle u(42, -23, Position(0, 0));
+    Rectangle v(43, -24, Position(0, 0));
+    Rectangle w(42, -24, Position(1, -1));
+    checkNotEqual<Rectangle>(r, u, "Not equal if different height.");
+    checkNotEqual<Rectangle>(r, v, "Not equal if different width.");
+    checkNotEqual<Rectangle>(r, w, "Not equal if different position.");
+
+    finishTest();
+}
+
 int main() {
     testRectangleConstructors();
+    testRectangleEquality();
 }

@@ -47,6 +47,7 @@ public:
     long long width() const { return _width; }
     long long height() const { return _height; }
     Position pos() const { return _pos; }
+    bool operator==(Rectangle const& other) const;
 private:
     long long _width;
     long long _height;

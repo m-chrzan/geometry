@@ -29,3 +29,8 @@ Rectangle& Rectangle::operator=(Rectangle&& rect) {
     _height = rect._height;
     return *this;
 }
+
+bool Rectangle::operator==(Rectangle const& other) const {
+    return this->_width == other._width && this->_height == other._height &&
+           this->_pos == other._pos;
+}

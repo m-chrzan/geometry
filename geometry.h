@@ -31,4 +31,17 @@ public:
     ~Vector() {}
 };
 
+class Rectangle {
+public:
+    Rectangle(long long width, long long height, Position pos) :
+        _width(width), _height(height), _pos(pos) {}
+    long long width() const { return _width; }
+    long long height() const { return _height; }
+    Position pos() const { return _pos; }
+private:
+    long long _width;
+    long long _height;
+    Position _pos;
+};
+
 #endif

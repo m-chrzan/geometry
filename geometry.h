@@ -8,6 +8,7 @@ public:
     virtual ~AbstractPair() = 0;
     long long x() const { return _x; }
     long long y() const { return _y; }
+    bool operator==(AbstractPair<T> const& other) const;
 private:
     long long _x;
     long long _y;

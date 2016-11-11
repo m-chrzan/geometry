@@ -3,12 +3,15 @@ CXXFLAGS=-Wall -g
 
 .PHONY: clean all
 
-all: position_test vector_test
+all: position_test vector_test rectangle_test
 
 position_test: position_test.o geometry.o testing.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 vector_test: vector_test.o geometry.o testing.o
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+rectangle_test: rectangle_test.o geometry.o testing.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 geometry.o:
@@ -17,4 +20,4 @@ geometry.o:
 .PHONY: clean
 
 clean:
-	rm -rf *.o position_test vector_test
+	rm -rf *.o position_test vector_test rectangle_test

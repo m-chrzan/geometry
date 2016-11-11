@@ -99,17 +99,23 @@ Rectangles &Rectangles::operator+=(Vector const &vec) {
     return *this;
 }
 
-void Rectangles::replace_rectangle_with_split(int idx, std::pair<Rectangle, Rectangle> const &splitted)
-
-void Rectangles::split_horizontally(int idx, int place) {
-    Rectangle r = this->_rectangles[idx];
-    std::pair<Rectangle, Rectangle> splitted = r.split_horizontally(place);
+void Rectangles::replace_rectangle_with_split(int idx,
+                                              std::pair<Rectangle, Rectangle> const &splitted) {
     auto it = this->_rectangles.begin();
     this->_rectangles.erase(it + idx);
     this->_rectangles.insert(it + idx, splitted.second);
     this->_rectangles.insert(it + idx, splitted.first);
 }
 
+void Rectangles::split_horizontally(int idx, int place) {
+    Rectangle r = this->_rectangles[idx];
+    std::pair<Rectangle, Rectangle> splitted = r.split_horizontally(place);
+    this->replace_rectangle_with_split(idx, splitted);
+}
+
 void Rectangles::split_vertically(int idx, int place) {
+    Rectangle r = this->_rectangles[idx];
+    std::pair<Rectangle, Rectangle> splitted = r.split_vertically(place);
+    this->replace_rectangle_with_split(idx, splitted);
 
 }

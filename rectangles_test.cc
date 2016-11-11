@@ -67,11 +67,16 @@ void testRectanglesSplit() {
     Rectangles r({r1, r2, r3});
     r.split_horizontally(1, 1);
 
-    checkEqual<long long>(r.size(), 4, "Rectangles size increased with splitting.");
+    checkEqual<long long>(r.size(), 4, "Rectangles size increased with splitting horizontally.");
     checkEqual<Rectangle>(r[1], r2.split_horizontally(1).first,
                           "First rectangle from the split is correct.");
     checkEqual<Rectangle>(r[2], r2.split_horizontally(1).second,
                           "Second rectangle from the split is correct.");
+
+    r.split_vertically(0, 1);
+    checkEqual<long long>(r.size(), 5, "Rectangles size increased with splitting vertically.");
+    checkEqual<long long>(r[0].width(), 1, "First rectangle was splitted correctly. (1/2)");
+    checkEqual<long long>(r[1].width(), 1, "First rectangle was splitted correctly. (1/2)");
 
     finishTest();
 }

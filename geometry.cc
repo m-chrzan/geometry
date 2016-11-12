@@ -14,7 +14,7 @@ AbstractPair<T>::~AbstractPair() {}
 
 template<class T>
 bool AbstractPair<T>::operator==(AbstractPair<T> const &other) const {
-    return this->_x == other._x && this->_y == other._y;
+    return _x == other._x && _y == other._y;
 }
 
 template<class T>
@@ -40,8 +40,8 @@ Rectangle &Rectangle::operator=(Rectangle &&rect) {
 }
 
 bool Rectangle::operator==(Rectangle const &other) const {
-    return this->_width == other._width && this->_height == other._height &&
-           this->_pos == other._pos;
+    return _width == other._width && _height == other._height &&
+           _pos == other._pos;
 }
 
 Rectangle &Rectangle::operator+=(Vector const &vec) {
@@ -50,20 +50,20 @@ Rectangle &Rectangle::operator+=(Vector const &vec) {
 }
 
 std::pair <Rectangle, Rectangle> Rectangle::split_horizontally(int place) {
-    assert(place < this->height());
-    Rectangle r1(this->width(), place, this->pos());
+    assert(place < _height);
+    Rectangle r1(_width, place, _pos);
 
     Position upperPos(_pos.x(), _pos.y() + place);
-    Rectangle r2(this->width(), this->height() - place, upperPos);
+    Rectangle r2(_width, _height - place, upperPos);
     return std::make_pair(r1, r2);
 }
 
 std::pair <Rectangle, Rectangle> Rectangle::split_vertically(int place) {
-    assert(place < this->width());
-    Rectangle r1(place, this->height(), this->pos());
+    assert(place < _width);
+    Rectangle r1(place, _height, _pos);
 
     Position rightPos(_pos.x() + place, _pos.y());
-    Rectangle r2(this->width() - place, this->height(), rightPos);
+    Rectangle r2(_width - place, _height, rightPos);
     return std::make_pair(r1, r2);
 }
 
@@ -80,7 +80,7 @@ Rectangle &Rectangles::operator[](int i) {
     // TODO: Ta funkcja robi coś dziwnego - zwraca Rectangles zamiast Rectangle
     // TODO: sprawdzić, jak mają być numerowane prostokąty - od zera czy od jeden?
     assert(i < this->size() && i >= 0);
-    return this->_rectangles[i];
+    return _rectangles[i];
 }
 
 bool Rectangles::operator==(Rectangles const &others) const {
@@ -98,28 +98,28 @@ bool Rectangles::operator==(Rectangles const &others) const {
 
 Rectangles &Rectangles::operator+=(Vector const &vec) {
     for (int i = 0; i < this->size(); i++) {
-        this->_rectangles.at(i) += vec; // TODO: Jak robie tutaj this[i] += vec to nie działa. WHY?!
+        _rectangles.at(i) += vec; // TODO: Jak robie tutaj this[i] += vec to nie działa. WHY?!
     }
     return *this;
 }
 
 void Rectangles::replace_rectangle_with_split(int idx,
                                               std::pair <Rectangle, Rectangle> const &splitted) {
-    auto it = this->_rectangles.begin();
-    this->_rectangles.erase(it + idx);
-    this->_rectangles.insert(it + idx, splitted.second);
-    this->_rectangles.insert(it + idx, splitted.first);
+    auto it = _rectangles.begin();
+    _rectangles.erase(it + idx);
+    _rectangles.insert(it + idx, splitted.second);
+    _rectangles.insert(it + idx, splitted.first);
 }
 
 void Rectangles::split_horizontally(int idx, int place) {
-    Rectangle r = this->_rectangles[idx];
+    Rectangle r = _rectangles[idx];
     std::pair <Rectangle, Rectangle> splitted = r.split_horizontally(place);
-    this->replace_rectangle_with_split(idx, splitted);
+    replace_rectangle_with_split(idx, splitted);
 }
 
 void Rectangles::split_vertically(int idx, int place) {
-    Rectangle r = this->_rectangles[idx];
+    Rectangle r = _rectangles[idx];
     std::pair <Rectangle, Rectangle> splitted = r.split_vertically(place);
-    this->replace_rectangle_with_split(idx, splitted);
+    replace_rectangle_with_split(idx, splitted);
 
 }

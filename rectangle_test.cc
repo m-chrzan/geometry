@@ -140,6 +140,34 @@ void testRectangleSplit() {
     checkEqual<Position>(rSplitVertically.second.pos(), Position(1, 0),
                          "Position of right rectangle further right than original.");
 
+    Rectangle p(3, 5, Position(-2, 3));
+    std::pair<Rectangle, Rectangle> pSplitHorizontally = p.split_horizontally(2);
+    checkEqual<long long>(pSplitHorizontally.first.height(), 2,
+                          "Height of lower rectangle correct.");
+    checkEqual<long long>(pSplitHorizontally.second.height(), 5 - 2,
+                          "Height of upper rectangle correct.");
+    checkEqual<long long>(pSplitHorizontally.first.width(), 3,
+                          "Width of lower rectangle unchanged.");
+    checkEqual<long long>(pSplitHorizontally.second.width(), 3,
+                          "Width of upper rectangle unchanged.");
+    checkEqual<Position>(pSplitHorizontally.first.pos(), p.pos(),
+                         "Position of lower rectangle same as original.");
+    checkEqual<Position>(pSplitHorizontally.second.pos(), Position(-2, 5),
+                         "Position of lower rectangle higher than original.");
+
+    std::pair<Rectangle, Rectangle> pSplitVertically = p.split_vertically(2);
+    checkEqual<long long>(pSplitVertically.first.width(), 2,
+                          "Width of left rectangle correct.");
+    checkEqual<long long>(pSplitVertically.second.width(), 3 - 2,
+                          "Width of right rectangle correct");
+    checkEqual<long long>(pSplitVertically.first.height(), 5,
+                          "Height of left rectangle correct.");
+    checkEqual<long long>(pSplitVertically.second.height(), 5,
+                          "Height of right rectangle correct");
+    checkEqual<Position>(pSplitVertically.first.pos(), p.pos(),
+                         "Position of left rectangle same as original.");
+    checkEqual<Position>(pSplitVertically.second.pos(), Position(0, 3),
+                         "Position of right rectangle further right than original.");
     finishTest();
 }
 

@@ -66,17 +66,21 @@ void testRectanglesSplit() {
     Rectangle r3(2, 30);
     Rectangles r({r1, r2, r3});
     r.split_horizontally(1, 1);
+    std::pair<Rectangle, Rectangle> r2_hsplit = r2.split_horizontally(1);
 
+    checkEqual<Rectangle>(r1, r[0], "First rectangle unchanged.");
+    checkEqual<Rectangle>(r3, r[3], "First rectangle unchanged.");
     checkEqual<long long>(r.size(), 4, "Rectangles size increased with splitting horizontally.");
-    checkEqual<Rectangle>(r[1], r2.split_horizontally(1).first,
+    checkEqual<Rectangle>(r[1], r2_hsplit.first,
                           "First rectangle from the split is correct.");
-    checkEqual<Rectangle>(r[2], r2.split_horizontally(1).second,
+    checkEqual<Rectangle>(r[2], r2_hsplit.second,
                           "Second rectangle from the split is correct.");
 
     r.split_vertically(0, 1);
+    std::pair<Rectangle, Rectangle> r1_vsplit = r1.split_vertically(1);
     checkEqual<long long>(r.size(), 5, "Rectangles size increased with splitting vertically.");
-    checkEqual<long long>(r[0].width(), 1, "First rectangle was splitted correctly. (1/2)");
-    checkEqual<long long>(r[1].width(), 1, "First rectangle was splitted correctly. (2/2)");
+    checkEqual<Rectangle>(r[0], r1_vsplit.first, "First rectangle was splitted correctly. (1/2)");
+    checkEqual<Rectangle>(r[1], r1_vsplit.second, "First rectangle was splitted correctly. (2/2)");
 
     finishTest();
 }

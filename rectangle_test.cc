@@ -92,8 +92,18 @@ void testRectangleMoveByVector() {
     Rectangle r(7, 6);
     Vector v(1, 1);
     r += v;
+    checkEqual<long long>(r.width(), 7, "Width unchanged.");
+    checkEqual<long long>(r.height(), 6, "Height unchanged.");
     checkEqual<long long>(r.pos().x(), 1, "Rectangle x coordinate moved correctly.");
     checkEqual<long long>(r.pos().y(), 1, "Rectangle y coordinate moved correctly.");
+
+    Rectangle p(3, 5, Position(20, -5));
+    Vector w(-20, 10);
+    p += w;
+    checkEqual<long long>(p.width(), 3, "Width unchanged.");
+    checkEqual<long long>(p.height(), 5, "Height unchanged.");
+    checkEqual<long long>(p.pos().x(), 0, "Rectangle x coordinate moved correctly.");
+    checkEqual<long long>(p.pos().y(), 5, "Rectangle y coordinate moved correctly.");
 
     finishTest();
 }

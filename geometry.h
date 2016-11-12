@@ -50,7 +50,8 @@ public:
             _width(width), _height(height), _pos(pos) {}
 
     Rectangle(long long width, long long height) : _width(width),
-                                                   _height(height), _pos(Position::origin()) {}
+                                                   _height(height),
+                                                   _pos(Position::origin()) {}
 
     Rectangle(Rectangle const &rect) : _width(rect._width),
                                        _height(rect._height), _pos(rect._pos) {}
@@ -113,7 +114,8 @@ private:
 
     Rectangle operator[](int i) const { return _rectangles.at(i); };
 
-    void replace_rectangle_with_split(int idx, std::pair <Rectangle, Rectangle> const &splitted);
+    void replace_with_pair(int idx,
+                           std::pair <Rectangle, Rectangle> const &pair);
 };
 
 #endif

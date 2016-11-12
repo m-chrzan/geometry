@@ -1,6 +1,4 @@
 #include <cassert>
-#include <iostream>
-#include <typeinfo>
 #include "geometry.h"
 
 template
@@ -69,27 +67,22 @@ std::pair <Rectangle, Rectangle> Rectangle::split_vertically(int place) {
 
 
 Rectangles::Rectangles(std::initializer_list <Rectangle> rects) {
-    Rectangle test(0, 0); // TODO: Czy sprawdzanie typu nie jest przegieciem?
     for (auto r : rects) {
-        assert(typeid(r).name() == typeid(test).name());
         _rectangles.push_back(r);
     }
 }
 
 Rectangle &Rectangles::operator[](int i) {
-    // TODO: Ta funkcja robi coś dziwnego - zwraca Rectangles zamiast Rectangle
-    // TODO: sprawdzić, jak mają być numerowane prostokąty - od zera czy od jeden?
     assert(i < this->size() && i >= 0);
     return _rectangles[i];
 }
 
 bool Rectangles::operator==(Rectangles const &others) const {
-    Rectangles const &thisRectangles = *this; // TODO: Czy tak jest ładnie?
     if (this->size() != others.size()) {
         return false;
     }
     for (int i = 0; i < this->size(); i++) {
-        if (!(thisRectangles[i] == others[i])) {
+        if (!((*this)[i] == others[i])) {
             return false;
         }
     }
@@ -98,28 +91,28 @@ bool Rectangles::operator==(Rectangles const &others) const {
 
 Rectangles &Rectangles::operator+=(Vector const &vec) {
     for (int i = 0; i < this->size(); i++) {
-        _rectangles.at(i) += vec; // TODO: Jak robie tutaj this[i] += vec to nie działa. WHY?!
+        (*this)[i] += vec;
     }
     return *this;
 }
 
-void Rectangles::replace_rectangle_with_split(int idx,
-                                              std::pair <Rectangle, Rectangle> const &splitted) {
+void Rectangles::replace_with_pair(int idx,
+                                   std::pair <Rectangle, Rectangle> const &pair) {
     auto it = _rectangles.begin();
     _rectangles.erase(it + idx);
-    _rectangles.insert(it + idx, splitted.second);
-    _rectangles.insert(it + idx, splitted.first);
+    _rectangles.insert(it + idx, pair.second);
+    _rectangles.insert(it + idx, pair.first);
 }
 
 void Rectangles::split_horizontally(int idx, int place) {
     Rectangle r = _rectangles[idx];
     std::pair <Rectangle, Rectangle> splitted = r.split_horizontally(place);
-    replace_rectangle_with_split(idx, splitted);
+    replace_with_pair(idx, splitted);
 }
 
 void Rectangles::split_vertically(int idx, int place) {
     Rectangle r = _rectangles[idx];
     std::pair <Rectangle, Rectangle> splitted = r.split_vertically(place);
-    replace_rectangle_with_split(idx, splitted);
+    replace_with_pair(idx, splitted);
 
 }

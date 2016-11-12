@@ -112,15 +112,33 @@ void testRectangleSplit() {
     beginTest();
 
     Rectangle r(7, 6);
-    checkEqual<long long>(r.split_horizontally(1).first.height(), 1,
-                          "Rectangle was splitted horizontally correctly. (1/2)");
-    checkEqual<long long>(r.split_horizontally(1).second.height(), 6 - 1,
-                          "Rectangle was splitted horizontally correctly. (2/2)");
-    checkEqual<long long>(r.split_vertically(1).first.width(), 1,
-                          "Rectangle was splitted vertically correctly. (1/2)");
-    checkEqual<long long>(r.split_vertically(1).second.width(), 7 - 1,
-                          "Rectangle was splitted vertically correctly. (2/2)");
+    std::pair<Rectangle, Rectangle> rSplitHorizontally = r.split_horizontally(1);
+    checkEqual<long long>(rSplitHorizontally.first.height(), 1,
+                          "Height of lower rectangle correct.");
+    checkEqual<long long>(rSplitHorizontally.second.height(), 6 - 1,
+                          "Height of upper rectangle correct.");
+    checkEqual<long long>(rSplitHorizontally.first.width(), 7,
+                          "Width of lower rectangle unchanged.");
+    checkEqual<long long>(rSplitHorizontally.second.width(), 7,
+                          "Width of upper rectangle unchanged.");
+    checkEqual<Position>(rSplitHorizontally.first.pos(), r.pos(),
+                         "Position of lower rectangle same as original.");
+    checkEqual<Position>(rSplitHorizontally.second.pos(), Position(0, 1),
+                         "Position of lower rectangle higher than original.");
 
+    std::pair<Rectangle, Rectangle> rSplitVertically = r.split_vertically(1);
+    checkEqual<long long>(rSplitVertically.first.width(), 1,
+                          "Width of left rectangle correct.");
+    checkEqual<long long>(rSplitVertically.second.width(), 7 - 1,
+                          "Width of right rectangle correct");
+    checkEqual<long long>(rSplitVertically.first.height(), 6,
+                          "Height of left rectangle correct.");
+    checkEqual<long long>(rSplitVertically.second.height(), 6,
+                          "Height of right rectangle correct");
+    checkEqual<Position>(rSplitVertically.first.pos(), r.pos(),
+                         "Position of left rectangle same as original.");
+    checkEqual<Position>(rSplitVertically.second.pos(), Position(1, 0),
+                         "Position of right rectangle further right than original.");
 
     finishTest();
 }

@@ -66,12 +66,6 @@ std::pair <Rectangle, Rectangle> Rectangle::split_vertically(int place) {
 }
 
 
-Rectangles::Rectangles(std::initializer_list <Rectangle> rects) {
-    for (auto r : rects) {
-        _rectangles.push_back(r);
-    }
-}
-
 Rectangle &Rectangles::operator[](int i) {
     assert(i < this->size() && i >= 0);
     return _rectangles[i];

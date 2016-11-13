@@ -91,7 +91,7 @@ private:
 
 class Rectangles {
 public:
-    Rectangles(std::initializer_list <Rectangle> rects);
+    Rectangles(std::initializer_list <Rectangle> rects) : _rectangles(rects) {}
 
     Rectangles() {}
 

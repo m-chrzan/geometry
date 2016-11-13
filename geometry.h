@@ -1,6 +1,7 @@
 #ifndef GEOMETRY_H_
 #define GEOMETRY_H_
 
+#include <cstddef>
 #include <utility>
 #include <vector>
 
@@ -99,26 +100,26 @@ public:
 
     Rectangles() {}
 
-    long size() const { return _rectangles.size(); };
+    size_t size() const { return _rectangles.size(); };
 
-    Rectangle &operator[](int i);
+    Rectangle &operator[](size_t i);
 
     bool operator==(Rectangles const &others) const;
 
     Rectangles &operator+=(Vector const &vec);
 
-    void split_horizontally(int idx, int place);
+    void split_horizontally(size_t idx, int place);
 
-    void split_vertically(int idx, int place);
+    void split_vertically(size_t idx, int place);
 
     ~Rectangles() {}
 
 private:
     std::vector <Rectangle> _rectangles;
 
-    Rectangle operator[](int i) const { return _rectangles.at(i); };
+    Rectangle operator[](size_t i) const { return _rectangles.at(i); };
 
-    void replace_with_pair(int idx,
+    void replace_with_pair(size_t idx,
                            std::pair <Rectangle, Rectangle> const &pair);
 };
 

@@ -36,7 +36,7 @@ void testRectanglesGetRectangle() {
 
     Rectangle r1(2, 5);
     Rectangle r2(3, 5, Position(-3, 6));
-    Rectangle r3(-42, 5);
+    Rectangle r3(42, 5);
     Rectangles r({r1, r2, r3});
     checkEqual<Rectangle>(r[0], r1, "Operator Rectangles[] returns correct object.");
     checkEqual<Rectangle>(r[1], r2, "Operator Rectangles[] returns correct object.");

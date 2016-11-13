@@ -1,6 +1,7 @@
 #ifndef GEOMETRY_H_
 #define GEOMETRY_H_
 
+#include <cassert>
 #include <cstddef>
 #include <utility>
 #include <vector>
@@ -48,11 +49,17 @@ public:
 class Rectangle {
 public:
     Rectangle(long width, long height, Position pos) :
-            _width(width), _height(height), _pos(pos) {}
+        _width(width), _height(height), _pos(pos) {
+        assert(width > 0);
+        assert(height > 0);
+    }
 
     Rectangle(long width, long height) : _width(width),
                                                    _height(height),
-                                                   _pos(Position::origin()) {}
+                                                   _pos(Position::origin()) {
+        assert(width > 0);
+        assert(height > 0);
+    }
 
     Rectangle(Rectangle const &rect) : _width(rect._width),
                                        _height(rect._height), _pos(rect._pos) {}

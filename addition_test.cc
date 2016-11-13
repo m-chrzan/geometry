@@ -51,23 +51,23 @@ void rectanglesPlusVector() {
     beginTest();
 
     Rectangles rs = {Rectangle(12, 13), Rectangle(1, 2, Position(-1, -2)),
-        Rectangle(-2, 42, Position(55, 3))};
+        Rectangle(2, 42, Position(55, 3))};
     Vector v(-1, 1);
 
     checkEqual<Rectangles>(rs + v,
                            Rectangles{Rectangle(12, 13, Position(-1, 1)),
                            Rectangle(1, 2, Position(-2, -1)),
-                           Rectangle(-2, 42, Position(54, 4))},
+                           Rectangle(2, 42, Position(54, 4))},
                            "Rectangles + Vector ok.");
     checkEqual<Rectangles>(v + rs,
                            Rectangles{Rectangle(12, 13, Position(-1, 1)),
                            Rectangle(1, 2, Position(-2, -1)),
-                           Rectangle(-2, 42, Position(54, 4))},
+                           Rectangle(2, 42, Position(54, 4))},
                            "Vector + Rectangles ok.");
     checkEqual<Rectangles>(rs,
                            Rectangles{Rectangle(12, 13),
                            Rectangle(1, 2, Position(-1, -2)),
-                           Rectangle(-2, 42, Position(55, 3))},
+                           Rectangle(2, 42, Position(55, 3))},
                            "Rectangles unchanged.");
     checkEqual<Vector>(v, Vector(-1, 1), "Vector unchanged.");
 

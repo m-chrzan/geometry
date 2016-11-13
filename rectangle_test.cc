@@ -30,19 +30,19 @@ void testRectangleConstructors() {
 }
 
 void testRectangleEquality() {
-    Rectangle r(42, -24, Position(0, 0));
+    Rectangle r(42, 24, Position(0, 0));
     Rectangle r2(r);
-    Rectangle s(42, -24, Position::origin());
-    Rectangle t(42, -24);
+    Rectangle s(42, 24, Position::origin());
+    Rectangle t(42, 24);
 
     checkEqual<Rectangle>(r, r, "A Rectangle is equal to itself.");
     checkEqual<Rectangle>(r, r2, "A Rectangle is equal to its copy.");
     checkEqual<Rectangle>(r, s,
                           "Rectangles initialized with equivalent values are equivalent.");
 
-    Rectangle u(42, -23, Position(0, 0));
-    Rectangle v(43, -24, Position(0, 0));
-    Rectangle w(42, -24, Position(1, -1));
+    Rectangle u(42, 23, Position(0, 0));
+    Rectangle v(43, 24, Position(0, 0));
+    Rectangle w(42, 24, Position(1, -1));
     checkNotEqual<Rectangle>(r, u, "Not equal if different height.");
     checkNotEqual<Rectangle>(r, v, "Not equal if different width.");
     checkNotEqual<Rectangle>(r, w, "Not equal if different position.");
@@ -78,11 +78,6 @@ void testRectangleArea() {
     checkEqual<long>(r.area(), 42, "Correctly calculates area");
     checkEqual<long>(r.area(), r.reflection().area(),
                           "Reflected Rectangle has the same area.");
-
-    Rectangle s(0, 5);
-    Rectangle t(5, 0);
-    checkEqual<long>(s.area(), 0, "Rectangle with no width has 0 area.");
-    checkEqual<long>(t.area(), 0, "Rectangle with no height has 0 area.");
 
     finishTest();
 }

@@ -6,16 +6,16 @@ void testVectorConstructors() {
     beginTest();
 
     Vector v(3, 4);
-    checkEqual<long long>(v.x(), 3, "x-coordinate set correctly");
-    checkEqual<long long>(v.y(), 4, "y-coordinate set correctly");
+    checkEqual<long>(v.x(), 3, "x-coordinate set correctly");
+    checkEqual<long>(v.y(), 4, "y-coordinate set correctly");
 
     Vector w(v);
-    checkEqual<long long>(w.x(), 3, "x-coordinate set correctly");
-    checkEqual<long long>(w.y(), 4, "y-coordinate set correctly");
+    checkEqual<long>(w.x(), 3, "x-coordinate set correctly");
+    checkEqual<long>(w.y(), 4, "y-coordinate set correctly");
 
     Vector u(Vector(3, 4));
-    checkEqual<long long>(u.x(), 3, "x-coordinate set correctly");
-    checkEqual<long long>(u.y(), 4, "y-coordinate set correctly");
+    checkEqual<long>(u.x(), 3, "x-coordinate set correctly");
+    checkEqual<long>(u.y(), 4, "y-coordinate set correctly");
 
     finishTest();
 }
@@ -45,8 +45,8 @@ void testVectorReflection() {
 
     Vector v(23, -5);
     Vector u = v.reflection();
-    checkEqual<long long>(u.x(), -5, "x-coordinate set correctly.");
-    checkEqual<long long>(u.y(), 23, "x-coordinate set correctly.");
+    checkEqual<long>(u.x(), -5, "x-coordinate set correctly.");
+    checkEqual<long>(u.y(), 23, "x-coordinate set correctly.");
 
     Vector w(42, 42);
     checkEqual<Vector>(w, w.reflection(),

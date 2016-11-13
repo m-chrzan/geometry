@@ -9,13 +9,13 @@ class Vector;
 template<class T>
 class AbstractPair {
 public:
-    AbstractPair(long long x, long long y) : _x(x), _y(y) {}
+    AbstractPair(long x, long y) : _x(x), _y(y) {}
 
     virtual ~AbstractPair() = 0;
 
-    long long x() const { return _x; }
+    long x() const { return _x; }
 
-    long long y() const { return _y; }
+    long y() const { return _y; }
 
     bool operator==(AbstractPair<T> const &other) const;
 
@@ -24,13 +24,13 @@ public:
     T reflection() const { return T(_y, _x); }
 
 private:
-    long long _x;
-    long long _y;
+    long _x;
+    long _y;
 };
 
 class Position : public AbstractPair<Position> {
 public:
-    Position(long long x, long long y) : AbstractPair(x, y) {}
+    Position(long x, long y) : AbstractPair(x, y) {}
 
     ~Position() {}
 
@@ -39,17 +39,17 @@ public:
 
 class Vector : public AbstractPair<Vector> {
 public:
-    Vector(long long x, long long y) : AbstractPair(x, y) {}
+    Vector(long x, long y) : AbstractPair(x, y) {}
 
     ~Vector() {}
 };
 
 class Rectangle {
 public:
-    Rectangle(long long width, long long height, Position pos) :
+    Rectangle(long width, long height, Position pos) :
             _width(width), _height(height), _pos(pos) {}
 
-    Rectangle(long long width, long long height) : _width(width),
+    Rectangle(long width, long height) : _width(width),
                                                    _height(height),
                                                    _pos(Position::origin()) {}
 
@@ -61,9 +61,9 @@ public:
 
     Rectangle &operator=(Rectangle &&rect);
 
-    long long width() const { return _width; }
+    long width() const { return _width; }
 
-    long long height() const { return _height; }
+    long height() const { return _height; }
 
     Position pos() const { return _pos; }
 
@@ -75,7 +75,7 @@ public:
 
     Rectangle &operator+=(Vector const &vec);
 
-    long long area() const { return _width * _height; }
+    long area() const { return _width * _height; }
 
     std::pair <Rectangle, Rectangle> split_horizontally(int place);
 
@@ -84,8 +84,8 @@ public:
     ~Rectangle() {}
 
 private:
-    long long _width;
-    long long _height;
+    long _width;
+    long _height;
     Position _pos;
 };
 
@@ -99,7 +99,7 @@ public:
 
     Rectangles() {}
 
-    long long size() const { return _rectangles.size(); };
+    long size() const { return _rectangles.size(); };
 
     Rectangle &operator[](int i);
 

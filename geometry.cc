@@ -29,9 +29,6 @@ Position const &Position::origin() {
 }
 
 Rectangle &Rectangle::operator=(Rectangle &&rect) {
-    if (this == &rect) {
-        return *this;
-    }
     _pos = std::move(rect._pos);
     _width = rect._width;
     _height = rect._height;

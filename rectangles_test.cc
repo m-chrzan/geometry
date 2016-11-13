@@ -44,7 +44,7 @@ void testRectanglesGetRectangle() {
                           "Operator Rectangles[] returns correct object.");
     checkEqual<Rectangle>(r[2], r3,
                           "Operator Rectangles[] returns correct object.");
-    
+
     finishTest();
 }
 

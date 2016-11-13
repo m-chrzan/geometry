@@ -9,9 +9,24 @@ void testRectanglesConstructors() {
     Rectangle r3(2, 5);
     Rectangles r({r1, r2, r3});
     checkEqual<long long>(r.size(), 3, "Set size correctly.");
+    checkEqual<Rectangle>(r[0], r1, "First Rectangle correct.");
+    checkEqual<Rectangle>(r[1], r2, "First Rectangle correct.");
+    checkEqual<Rectangle>(r[2], r3, "First Rectangle correct.");
 
     Rectangles emptyR;
     checkEqual<long long>(emptyR.size(), 0, "Size of an empty Rectangles is zero.");
+
+    Rectangles copy(r);
+    checkEqual<long long>(copy.size(), 3, "Set size correctly.");
+    checkEqual<Rectangle>(copy[0], r1, "First Rectangle correct.");
+    checkEqual<Rectangle>(copy[1], r2, "First Rectangle correct.");
+    checkEqual<Rectangle>(copy[2], r3, "First Rectangle correct.");
+
+    Rectangles move(Rectangles{r1, r2, r3});
+    checkEqual<long long>(move.size(), 3, "Set size correctly.");
+    checkEqual<Rectangle>(move[0], r1, "First Rectangle correct.");
+    checkEqual<Rectangle>(move[1], r2, "First Rectangle correct.");
+    checkEqual<Rectangle>(move[2], r3, "First Rectangle correct.");
 
     finishTest();
 }

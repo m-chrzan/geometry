@@ -118,4 +118,12 @@ private:
                            std::pair <Rectangle, Rectangle> const &pair);
 };
 
+Vector operator+(Vector v1, Vector const &v2);
+Position operator+(Position p, Vector const &v);
+Position operator+(Vector const &v, Position p);
+Rectangle operator+(Rectangle r, Vector const &v);
+Rectangle operator+(Vector const &v, Rectangle r);
+Rectangles operator+(Rectangles rs, Vector const &v);
+Rectangles operator+(Vector const &v, Rectangles rs);
+
 #endif

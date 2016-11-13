@@ -116,3 +116,30 @@ void Rectangles::split_vertically(int idx, int place) {
     replace_with_pair(idx, splitted);
 
 }
+
+Vector operator+(Vector v1, Vector const &v2) {
+    return (v1 += v2);
+}
+
+Position operator+(Position p, Vector const &v) {
+    return (p += v);
+}
+
+Position operator+(Vector const &v, Position p) {
+    return (p += v);
+}
+Rectangle operator+(Rectangle r, Vector const &v) {
+    return (r += v);
+}
+
+Rectangle operator+(Vector const &v, Rectangle r) {
+    return (r += v);
+}
+
+Rectangles operator+(Rectangles rs, Vector const &v) {
+    return (rs += v);
+}
+
+Rectangles operator+(Vector const &v, Rectangles rs) {
+    return (rs += v);
+}

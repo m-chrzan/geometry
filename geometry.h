@@ -6,6 +6,9 @@
 #include <utility>
 #include <vector>
 
+#define rect_vec std::vector<Rectangle>
+#define rect_pair std::pair<Rectangle, Rectangle>
+
 class Vector;
 
 template<class T>
@@ -49,14 +52,14 @@ public:
 class Rectangle {
 public:
     Rectangle(long width, long height, Position pos) :
-        _width(width), _height(height), _pos(pos) {
+            _width(width), _height(height), _pos(pos) {
         assert(width > 0);
         assert(height > 0);
     }
 
     Rectangle(long width, long height) : _width(width),
-                                                   _height(height),
-                                                   _pos(Position::origin()) {
+                                         _height(height),
+                                         _pos(Position::origin()) {
         assert(width > 0);
         assert(height > 0);
     }
@@ -85,9 +88,9 @@ public:
 
     long area() const { return _width * _height; }
 
-    std::pair <Rectangle, Rectangle> split_horizontally(int place);
+    rect_pair split_horizontally(int place);
 
-    std::pair <Rectangle, Rectangle> split_vertically(int place);
+    rect_pair split_vertically(int place);
 
     ~Rectangle() {}
 
@@ -99,7 +102,7 @@ private:
 
 class Rectangles {
 public:
-    Rectangles(std::initializer_list <Rectangle> rects) : _rectangles(rects) {}
+    Rectangles(std::initializer_list<Rectangle> rects) : _rectangles(rects) {}
 
     Rectangles(Rectangles const &rs) : _rectangles(rs._rectangles) {}
 
@@ -122,20 +125,28 @@ public:
     ~Rectangles() {}
 
 private:
-    std::vector <Rectangle> _rectangles;
-
+    rect_vec _rectangles;
     Rectangle operator[](size_t i) const { return _rectangles.at(i); };
-
     void replace_with_pair(size_t idx,
-                           std::pair <Rectangle, Rectangle> const &pair);
+                           rect_pair const &pair);
 };
 
 Vector operator+(Vector v1, Vector const &v2);
+
 Position operator+(Position p, Vector const &v);
+
 Position operator+(Vector const &v, Position p);
+
 Rectangle operator+(Rectangle r, Vector const &v);
+
 Rectangle operator+(Vector const &v, Rectangle r);
+
 Rectangles operator+(Rectangles rs, Vector const &v);
+
 Rectangles operator+(Vector const &v, Rectangles rs);
+
+Rectangle merge_horizontally(Rectangle const &rect1, Rectangle const &rect2);
+
+Rectangle merge_vertically(Rectangle const &rect1, Rectangle const &rect2);
 
 #endif

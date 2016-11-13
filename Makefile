@@ -1,7 +1,7 @@
 CXX=g++
 CXXFLAGS=-Wall -g -std=c++14
 
-TESTS=position_test vector_test rectangle_test rectangles_test addition_test
+TESTS=position_test vector_test rectangle_test rectangles_test addition_test merging_test
 
 .PHONY: clean all
 
@@ -20,6 +20,9 @@ rectangles_test: rectangles_test.o geometry.o testing.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 addition_test: addition_test.o geometry.o testing.o
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+merging_test: merging_test.o geometry.o testing.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 geometry.o:

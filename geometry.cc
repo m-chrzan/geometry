@@ -1,5 +1,7 @@
 #include "geometry.h"
 
+#define rect_pair std::pair<Rectangle, Rectangle>
+
 template
 class AbstractPair<Position>;
 
@@ -46,7 +48,7 @@ Rectangle &Rectangle::operator+=(Vector const &vec) {
     return *this;
 }
 
-std::pair <Rectangle, Rectangle> Rectangle::split_horizontally(int place) {
+rect_pair Rectangle::split_horizontally(int place) {
     assert(place < _height);
     Rectangle r1(_width, place, _pos);
 
@@ -55,7 +57,7 @@ std::pair <Rectangle, Rectangle> Rectangle::split_horizontally(int place) {
     return std::make_pair(r1, r2);
 }
 
-std::pair <Rectangle, Rectangle> Rectangle::split_vertically(int place) {
+rect_pair Rectangle::split_vertically(int place) {
     assert(place < _width);
     Rectangle r1(place, _height, _pos);
 
@@ -90,7 +92,7 @@ Rectangles &Rectangles::operator+=(Vector const &vec) {
 }
 
 void Rectangles::replace_with_pair(size_t idx,
-                                   std::pair <Rectangle, Rectangle> const &pair) {
+                                   rect_pair const &pair) {
     auto it = _rectangles.begin();
     _rectangles.erase(it + idx);
     _rectangles.insert(it + idx, pair.second);
@@ -99,15 +101,14 @@ void Rectangles::replace_with_pair(size_t idx,
 
 void Rectangles::split_horizontally(size_t idx, int place) {
     Rectangle r = _rectangles[idx];
-    std::pair <Rectangle, Rectangle> splitted = r.split_horizontally(place);
+    rect_pair splitted = r.split_horizontally(place);
     replace_with_pair(idx, splitted);
 }
 
 void Rectangles::split_vertically(size_t idx, int place) {
     Rectangle r = _rectangles[idx];
-    std::pair <Rectangle, Rectangle> splitted = r.split_vertically(place);
+    rect_pair splitted = r.split_vertically(place);
     replace_with_pair(idx, splitted);
-
 }
 
 Vector operator+(Vector v1, Vector const &v2) {
@@ -121,6 +122,7 @@ Position operator+(Position p, Vector const &v) {
 Position operator+(Vector const &v, Position p) {
     return (p += v);
 }
+
 Rectangle operator+(Rectangle r, Vector const &v) {
     return (r += v);
 }
@@ -135,4 +137,18 @@ Rectangles operator+(Rectangles rs, Vector const &v) {
 
 Rectangles operator+(Vector const &v, Rectangles rs) {
     return (rs += v);
+}
+
+Rectangle merge_horizontally(Rectangle const &rect1, Rectangle const &rect2) {
+    assert(rect1.pos() + Vector(0, rect1.height()) == rect2.pos()
+           && rect1.width() == rect2.width());
+    return Rectangle(rect1.width(), rect1.height() + rect2.height(),
+                     rect1.pos());
+}
+
+Rectangle merge_vertically(Rectangle const &rect1, Rectangle const &rect2) {
+    assert(rect1.pos() + Vector(rect1.width(), 0) == rect2.pos()
+           && rect1.height() == rect2.height());
+    return Rectangle(rect1.width() + rect2.width(), rect1.height(),
+                     rect1.pos());
 }

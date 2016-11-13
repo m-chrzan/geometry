@@ -1,6 +1,5 @@
 #include "testing.h"
 #include "geometry.h"
-#include <iostream>
 
 void positionPlusVector() {
     beginTest();
@@ -117,7 +116,6 @@ void compoundAdditions() {
 
     finishTest();
 }
-
 
 int main() {
     positionPlusVector();

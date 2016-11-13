@@ -93,6 +93,10 @@ class Rectangles {
 public:
     Rectangles(std::initializer_list <Rectangle> rects) : _rectangles(rects) {}
 
+    Rectangles(Rectangles const &rs) : _rectangles(rs._rectangles) {}
+
+    Rectangles(Rectangles &&rs) : _rectangles(std::move(rs._rectangles)) {}
+
     Rectangles() {}
 
     long long size() const { return _rectangles.size(); };

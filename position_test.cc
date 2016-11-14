@@ -6,16 +6,16 @@ void testPositionConstructors() {
     beginTest();
 
     Position p(3, 4);
-    checkEqual<long>(p.x(), 3, "x-coordinate set correctly");
-    checkEqual<long>(p.y(), 4, "y-coordinate set correctly");
+    checkEqual<int32_t>(p.x(), 3, "x-coordinate set correctly");
+    checkEqual<int32_t>(p.y(), 4, "y-coordinate set correctly");
 
     Position q(p);
-    checkEqual<long>(q.x(), 3, "x-coordinate set correctly");
-    checkEqual<long>(q.y(), 4, "y-coordinate set correctly");
+    checkEqual<int32_t>(q.x(), 3, "x-coordinate set correctly");
+    checkEqual<int32_t>(q.y(), 4, "y-coordinate set correctly");
 
     Position r(Position(3, 4));
-    checkEqual<long>(r.x(), 3, "x-coordinate set correctly");
-    checkEqual<long>(r.y(), 4, "y-coordinate set correctly");
+    checkEqual<int32_t>(r.x(), 3, "x-coordinate set correctly");
+    checkEqual<int32_t>(r.y(), 4, "y-coordinate set correctly");
 
     finishTest();
 }
@@ -23,8 +23,8 @@ void testPositionConstructors() {
 void testOrigin() {
     beginTest();
 
-    checkEqual<long>(Position::origin().x(), 0, "x-coordinate is 0");
-    checkEqual<long>(Position::origin().y(), 0, "y-coordinate is 0");
+    checkEqual<int32_t>(Position::origin().x(), 0, "x-coordinate is 0");
+    checkEqual<int32_t>(Position::origin().y(), 0, "y-coordinate is 0");
 
     finishTest();
 }
@@ -57,8 +57,8 @@ void testPositionReflection() {
 
     Position p(23, -5);
     Position r = p.reflection();
-    checkEqual<long>(r.x(), -5, "x-coordinate set correctly.");
-    checkEqual<long>(r.y(), 23, "x-coordinate set correctly.");
+    checkEqual<int32_t>(r.x(), -5, "x-coordinate set correctly.");
+    checkEqual<int32_t>(r.y(), 23, "x-coordinate set correctly.");
 
     Position q(42, 42);
     checkEqual<Position>(q, q.reflection(), 

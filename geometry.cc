@@ -45,7 +45,7 @@ Rectangle &Rectangle::operator+=(Vector const &vec) {
     return *this;
 }
 
-rect_pair Rectangle::split_horizontally(int place) {
+rect_pair Rectangle::split_horizontally(int32_t place) {
     assert(place < _height);
     Rectangle r1(_width, place, _pos);
 
@@ -54,7 +54,7 @@ rect_pair Rectangle::split_horizontally(int place) {
     return std::make_pair(r1, r2);
 }
 
-rect_pair Rectangle::split_vertically(int place) {
+rect_pair Rectangle::split_vertically(int32_t place) {
     assert(place < _width);
     Rectangle r1(place, _height, _pos);
 
@@ -96,13 +96,13 @@ void Rectangles::replace_with_pair(size_t idx,
     _rectangles.insert(it + idx, pair.first);
 }
 
-void Rectangles::split_horizontally(size_t idx, int place) {
+void Rectangles::split_horizontally(size_t idx, int32_t place) {
     Rectangle r = _rectangles[idx];
     rect_pair splitted = r.split_horizontally(place);
     replace_with_pair(idx, splitted);
 }
 
-void Rectangles::split_vertically(size_t idx, int place) {
+void Rectangles::split_vertically(size_t idx, int32_t place) {
     Rectangle r = _rectangles[idx];
     rect_pair splitted = r.split_vertically(place);
     replace_with_pair(idx, splitted);

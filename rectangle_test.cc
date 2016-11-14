@@ -5,24 +5,24 @@ void testRectangleConstructors() {
     beginTest();
 
     Rectangle r(2, 5, Position(-1, 3));
-    checkEqual<long>(r.width(), 2, "Set width correctly.");
-    checkEqual<long>(r.height(), 5, "Set height correctly.");
+    checkEqual<int32_t>(r.width(), 2, "Set width correctly.");
+    checkEqual<int32_t>(r.height(), 5, "Set height correctly.");
     checkEqual<Position>(r.pos(), Position(-1, 3), "Set position correctly.");
 
     Rectangle s(r);
-    checkEqual<long>(s.width(), 2, "Set width correctly.");
-    checkEqual<long>(s.height(), 5, "Set height correctly.");
+    checkEqual<int32_t>(s.width(), 2, "Set width correctly.");
+    checkEqual<int32_t>(s.height(), 5, "Set height correctly.");
     checkEqual<Position>(s.pos(), Position(-1, 3), "Set position correctly.");
 
     Rectangle t(3, 6, Position(0, 4));
     t = Rectangle(2, 5, Position(-1, 3));
-    checkEqual<long>(s.width(), 2, "Set width correctly.");
-    checkEqual<long>(s.height(), 5, "Set height correctly.");
+    checkEqual<int32_t>(s.width(), 2, "Set width correctly.");
+    checkEqual<int32_t>(s.height(), 5, "Set height correctly.");
     checkEqual<Position>(s.pos(), Position(-1, 3), "Set position correctly.");
 
     Rectangle u(10, 20);
-    checkEqual<long>(u.width(), 10, "Set width correctly.");
-    checkEqual<long>(u.height(), 20, "Set height correctly.");
+    checkEqual<int32_t>(u.width(), 10, "Set width correctly.");
+    checkEqual<int32_t>(u.height(), 20, "Set height correctly.");
     checkEqual<Position>(u.pos(), Position::origin(),
                          "Set position correctly.");
 
@@ -56,8 +56,8 @@ void testRectangleReflection() {
     Rectangle r(3, 4, Position(2, 3));
     Rectangle s = r.reflection();
 
-    checkEqual<long>(s.width(), 4, "Width set correctly.");
-    checkEqual<long>(s.height(), 3, "Height set correctly.");
+    checkEqual<int32_t>(s.width(), 4, "Width set correctly.");
+    checkEqual<int32_t>(s.height(), 3, "Height set correctly.");
     checkEqual<Position>(s.pos(), Position(3, 2), "Position set correctly.");
 
     Rectangle t = Rectangle(12, 2, Position(-5, -5)).reflection();
@@ -75,8 +75,8 @@ void testRectangleArea() {
     beginTest();
 
     Rectangle r(7, 6);
-    checkEqual<long>(r.area(), 42, "Correctly calculates area");
-    checkEqual<long>(r.area(), r.reflection().area(),
+    checkEqual<int32_t>(r.area(), 42, "Correctly calculates area");
+    checkEqual<int32_t>(r.area(), r.reflection().area(),
                           "Reflected Rectangle has the same area.");
 
     finishTest();
@@ -88,21 +88,21 @@ void testRectangleMoveByVector() {
     Rectangle r(7, 6);
     Vector v(1, 1);
     r += v;
-    checkEqual<long>(r.width(), 7, "Width unchanged.");
-    checkEqual<long>(r.height(), 6, "Height unchanged.");
-    checkEqual<long>(r.pos().x(), 1,
+    checkEqual<int32_t>(r.width(), 7, "Width unchanged.");
+    checkEqual<int32_t>(r.height(), 6, "Height unchanged.");
+    checkEqual<int32_t>(r.pos().x(), 1,
                           "Rectangle x coordinate moved correctly.");
-    checkEqual<long>(r.pos().y(), 1,
+    checkEqual<int32_t>(r.pos().y(), 1,
                           "Rectangle y coordinate moved correctly.");
 
     Rectangle p(3, 5, Position(20, -5));
     Vector w(-20, 10);
     p += w;
-    checkEqual<long>(p.width(), 3, "Width unchanged.");
-    checkEqual<long>(p.height(), 5, "Height unchanged.");
-    checkEqual<long>(p.pos().x(), 0,
+    checkEqual<int32_t>(p.width(), 3, "Width unchanged.");
+    checkEqual<int32_t>(p.height(), 5, "Height unchanged.");
+    checkEqual<int32_t>(p.pos().x(), 0,
                           "Rectangle x coordinate moved correctly.");
-    checkEqual<long>(p.pos().y(), 5,
+    checkEqual<int32_t>(p.pos().y(), 5,
                           "Rectangle y coordinate moved correctly.");
 
     finishTest();
@@ -114,13 +114,13 @@ void testRectangleSplit() {
     Rectangle r(7, 6);
     std::pair <Rectangle, Rectangle> rSplitHorizontally = r.split_horizontally(
             1);
-    checkEqual<long>(rSplitHorizontally.first.height(), 1,
+    checkEqual<int32_t>(rSplitHorizontally.first.height(), 1,
                           "Height of lower rectangle correct.");
-    checkEqual<long>(rSplitHorizontally.second.height(), 6 - 1,
+    checkEqual<int32_t>(rSplitHorizontally.second.height(), 6 - 1,
                           "Height of upper rectangle correct.");
-    checkEqual<long>(rSplitHorizontally.first.width(), 7,
+    checkEqual<int32_t>(rSplitHorizontally.first.width(), 7,
                           "Width of lower rectangle unchanged.");
-    checkEqual<long>(rSplitHorizontally.second.width(), 7,
+    checkEqual<int32_t>(rSplitHorizontally.second.width(), 7,
                           "Width of upper rectangle unchanged.");
     checkEqual<Position>(rSplitHorizontally.first.pos(), r.pos(),
                          "Position of lower rectangle same as original.");
@@ -128,13 +128,13 @@ void testRectangleSplit() {
                          "Position of lower rectangle higher than original.");
 
     std::pair <Rectangle, Rectangle> rSplitVertically = r.split_vertically(1);
-    checkEqual<long>(rSplitVertically.first.width(), 1,
+    checkEqual<int32_t>(rSplitVertically.first.width(), 1,
                           "Width of left rectangle correct.");
-    checkEqual<long>(rSplitVertically.second.width(), 7 - 1,
+    checkEqual<int32_t>(rSplitVertically.second.width(), 7 - 1,
                           "Width of right rectangle correct");
-    checkEqual<long>(rSplitVertically.first.height(), 6,
+    checkEqual<int32_t>(rSplitVertically.first.height(), 6,
                           "Height of left rectangle correct.");
-    checkEqual<long>(rSplitVertically.second.height(), 6,
+    checkEqual<int32_t>(rSplitVertically.second.height(), 6,
                           "Height of right rectangle correct");
     checkEqual<Position>(rSplitVertically.first.pos(), r.pos(),
                          "Position of left rectangle same as original.");
@@ -144,13 +144,13 @@ void testRectangleSplit() {
     Rectangle p(3, 5, Position(-2, 3));
     std::pair <Rectangle, Rectangle> pSplitHorizontally = p.split_horizontally(
             2);
-    checkEqual<long>(pSplitHorizontally.first.height(), 2,
+    checkEqual<int32_t>(pSplitHorizontally.first.height(), 2,
                           "Height of lower rectangle correct.");
-    checkEqual<long>(pSplitHorizontally.second.height(), 5 - 2,
+    checkEqual<int32_t>(pSplitHorizontally.second.height(), 5 - 2,
                           "Height of upper rectangle correct.");
-    checkEqual<long>(pSplitHorizontally.first.width(), 3,
+    checkEqual<int32_t>(pSplitHorizontally.first.width(), 3,
                           "Width of lower rectangle unchanged.");
-    checkEqual<long>(pSplitHorizontally.second.width(), 3,
+    checkEqual<int32_t>(pSplitHorizontally.second.width(), 3,
                           "Width of upper rectangle unchanged.");
     checkEqual<Position>(pSplitHorizontally.first.pos(), p.pos(),
                          "Position of lower rectangle same as original.");
@@ -158,13 +158,13 @@ void testRectangleSplit() {
                          "Position of lower rectangle higher than original.");
 
     std::pair <Rectangle, Rectangle> pSplitVertically = p.split_vertically(2);
-    checkEqual<long>(pSplitVertically.first.width(), 2,
+    checkEqual<int32_t>(pSplitVertically.first.width(), 2,
                           "Width of left rectangle correct.");
-    checkEqual<long>(pSplitVertically.second.width(), 3 - 2,
+    checkEqual<int32_t>(pSplitVertically.second.width(), 3 - 2,
                           "Width of right rectangle correct");
-    checkEqual<long>(pSplitVertically.first.height(), 5,
+    checkEqual<int32_t>(pSplitVertically.first.height(), 5,
                           "Height of left rectangle correct.");
-    checkEqual<long>(pSplitVertically.second.height(), 5,
+    checkEqual<int32_t>(pSplitVertically.second.height(), 5,
                           "Height of right rectangle correct");
     checkEqual<Position>(pSplitVertically.first.pos(), p.pos(),
                          "Position of left rectangle same as original.");

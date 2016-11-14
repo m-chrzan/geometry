@@ -3,6 +3,7 @@
 
 #include <cassert>
 #include <cstddef>
+#include <cstdint>
 #include <utility>
 #include <vector>
 
@@ -14,13 +15,13 @@ class Vector;
 template<class T>
 class AbstractPair {
 public:
-    AbstractPair(long x, long y) : _x(x), _y(y) {}
+    AbstractPair(int32_t x, int32_t y) : _x(x), _y(y) {}
 
     virtual ~AbstractPair() = 0;
 
-    long x() const { return _x; }
+    int32_t x() const { return _x; }
 
-    long y() const { return _y; }
+    int32_t y() const { return _y; }
 
     bool operator==(AbstractPair<T> const &other) const;
 
@@ -29,13 +30,13 @@ public:
     T reflection() const { return T(_y, _x); }
 
 private:
-    long _x;
-    long _y;
+    int32_t _x;
+    int32_t _y;
 };
 
 class Position : public AbstractPair<Position> {
 public:
-    Position(long x, long y) : AbstractPair(x, y) {}
+    Position(int32_t x, int32_t y) : AbstractPair(x, y) {}
 
     ~Position() {}
 
@@ -44,25 +45,22 @@ public:
 
 class Vector : public AbstractPair<Vector> {
 public:
-    Vector(long x, long y) : AbstractPair(x, y) {}
+    Vector(int32_t x, int32_t y) : AbstractPair(x, y) {}
 
     ~Vector() {}
 };
 
 class Rectangle {
 public:
-    Rectangle(long width, long height, Position pos) :
+    Rectangle(int32_t width, int32_t height, Position pos) :
             _width(width), _height(height), _pos(pos) {
         assert(width > 0);
         assert(height > 0);
     }
 
-    Rectangle(long width, long height) : _width(width),
-                                         _height(height),
-                                         _pos(Position::origin()) {
-        assert(width > 0);
-        assert(height > 0);
-    }
+    Rectangle(int32_t width, int32_t height) : Rectangle(width,
+                                                         height,
+                                                         Position::origin()) {}
 
     Rectangle(Rectangle const &rect) : _width(rect._width),
                                        _height(rect._height), _pos(rect._pos) {}
@@ -72,9 +70,9 @@ public:
 
     Rectangle &operator=(Rectangle &&rect);
 
-    long width() const { return _width; }
+    int32_t width() const { return _width; }
 
-    long height() const { return _height; }
+    int32_t height() const { return _height; }
 
     Position pos() const { return _pos; }
 
@@ -86,17 +84,17 @@ public:
 
     Rectangle &operator+=(Vector const &vec);
 
-    long area() const { return _width * _height; }
+    int32_t area() const { return _width * _height; }
 
-    rect_pair split_horizontally(int place);
+    rect_pair split_horizontally(int32_t place);
 
-    rect_pair split_vertically(int place);
+    rect_pair split_vertically(int32_t place);
 
     ~Rectangle() {}
 
 private:
-    long _width;
-    long _height;
+    int32_t _width;
+    int32_t _height;
     Position _pos;
 };
 
@@ -118,9 +116,9 @@ public:
 
     Rectangles &operator+=(Vector const &vec);
 
-    void split_horizontally(size_t idx, int place);
+    void split_horizontally(size_t idx, int32_t place);
 
-    void split_vertically(size_t idx, int place);
+    void split_vertically(size_t idx, int32_t place);
 
     ~Rectangles() {}
 

@@ -8,22 +8,22 @@ void testRectanglesConstructors() {
     Rectangle r2(2, 5);
     Rectangle r3(2, 5);
     Rectangles r({r1, r2, r3});
-    checkEqual<long>(r.size(), 3, "Set size correctly.");
+    checkEqual<int32_t>(r.size(), 3, "Set size correctly.");
     checkEqual<Rectangle>(r[0], r1, "First Rectangle correct.");
     checkEqual<Rectangle>(r[1], r2, "First Rectangle correct.");
     checkEqual<Rectangle>(r[2], r3, "First Rectangle correct.");
 
     Rectangles emptyR;
-    checkEqual<long>(emptyR.size(), 0, "Size of an empty Rectangles is zero.");
+    checkEqual<int32_t>(emptyR.size(), 0, "Size of an empty Rectangles is zero.");
 
     Rectangles copy(r);
-    checkEqual<long>(copy.size(), 3, "Set size correctly.");
+    checkEqual<int32_t>(copy.size(), 3, "Set size correctly.");
     checkEqual<Rectangle>(copy[0], r1, "First Rectangle correct.");
     checkEqual<Rectangle>(copy[1], r2, "First Rectangle correct.");
     checkEqual<Rectangle>(copy[2], r3, "First Rectangle correct.");
 
     Rectangles move(Rectangles { r1, r2, r3 });
-    checkEqual<long>(move.size(), 3, "Set size correctly.");
+    checkEqual<int32_t>(move.size(), 3, "Set size correctly.");
     checkEqual<Rectangle>(move[0], r1, "First Rectangle correct.");
     checkEqual<Rectangle>(move[1], r2, "First Rectangle correct.");
     checkEqual<Rectangle>(move[2], r3, "First Rectangle correct.");
@@ -76,9 +76,9 @@ void testRectanglesMoveByVector() {
     Rectangles r({Rectangle(1, 1), Rectangle(2, 2)});
     Vector v(1, 1);
     r += v;
-    checkEqual<long>(r[0].pos().x(), 1, "Rectangles first element was moved "
+    checkEqual<int32_t>(r[0].pos().x(), 1, "Rectangles first element was moved "
             "by vector.");
-    checkEqual<long>(r[1].pos().x(), 1, "Rectangles second element was moved "
+    checkEqual<int32_t>(r[1].pos().x(), 1, "Rectangles second element was moved "
             "by vector.");
 
     finishTest();
@@ -96,7 +96,7 @@ void testRectanglesSplit() {
 
     checkEqual<Rectangle>(r1, r[0], "First rectangle unchanged.");
     checkEqual<Rectangle>(r3, r[3], "Fourth rectangle unchanged.");
-    checkEqual<long>(r.size(), 4, "Rectangles size increased "
+    checkEqual<int32_t>(r.size(), 4, "Rectangles size increased "
             "with splitting horizontally.");
     checkEqual<Rectangle>(r[1], r2_hsplit.first,
                           "First rectangle from the split is correct.");
@@ -105,7 +105,7 @@ void testRectanglesSplit() {
 
     r.split_vertically(0, 1);
     std::pair<Rectangle, Rectangle> r1_vsplit = r1.split_vertically(1);
-    checkEqual<long>(r.size(), 5, "Rectangles size increased with splitting "
+    checkEqual<int32_t>(r.size(), 5, "Rectangles size increased with splitting "
             "vertically.");
     checkEqual<Rectangle>(r[0], r1_vsplit.first, "First rectangle was splitted "
             "correctly. (1/2)");

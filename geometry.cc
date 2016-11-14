@@ -57,7 +57,7 @@ rect_pair Rectangle::split_vertically(int32_t place) {
 
 
 Rectangle &Rectangles::operator[](size_t i) {
-    assert(i < size() && i >= 0);
+    assert(i < size());
     return _rectangles[i];
 }
 

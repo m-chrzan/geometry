@@ -117,19 +117,19 @@ private:
                            rect_pair const &pair);
 };
 
-Vector operator+(Vector v1, Vector const &v2);
+const Vector operator+(Vector v1, Vector const &v2);
 
-Position operator+(Position p, Vector const &v);
+const Position operator+(Position p, Vector const &v);
 
-Position operator+(Vector const &v, Position p);
+const Position operator+(Vector const &v, Position p);
 
-Rectangle operator+(Rectangle r, Vector const &v);
+const Rectangle operator+(Rectangle r, Vector const &v);
 
-Rectangle operator+(Vector const &v, Rectangle r);
+const Rectangle operator+(Vector const &v, Rectangle r);
 
-Rectangles operator+(Rectangles rs, Vector const &v);
+const Rectangles operator+(Rectangles rs, Vector const &v);
 
-Rectangles operator+(Vector const &v, Rectangles rs);
+const Rectangles operator+(Vector const &v, Rectangles rs);
 
 Rectangle merge_horizontally(Rectangle const &rect1, Rectangle const &rect2);
 

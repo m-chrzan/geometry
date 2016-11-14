@@ -1,7 +1,5 @@
 #include "geometry.h"
 
-#define rect_pair std::pair<Rectangle, Rectangle>
-
 template
 class AbstractPair<Position>;
 
@@ -82,8 +80,7 @@ Rectangles &Rectangles::operator+=(Vector const &vec) {
     return *this;
 }
 
-void Rectangles::replace_with_pair(size_t idx,
-                                   rect_pair const &pair) {
+void Rectangles::replace_with_pair(size_t idx, rect_pair const &pair) {
     auto it = _rectangles.begin();
     _rectangles.erase(it + idx);
     _rectangles.insert(it + idx, pair.second);

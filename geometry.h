@@ -52,8 +52,9 @@ public:
 
 class Rectangle {
 public:
-    Rectangle(int32_t width, int32_t height, Position pos) :
-            _width(width), _height(height), _pos(pos) {
+    Rectangle(int32_t width, int32_t height, Position pos) : _width(width),
+                                                             _height(height),
+                                                             _pos(pos) {
         assert(width > 0);
         assert(height > 0);
     }
@@ -113,8 +114,7 @@ public:
 private:
     rect_vec _rectangles;
     Rectangle operator[](size_t i) const { return _rectangles.at(i); };
-    void replace_with_pair(size_t idx,
-                           rect_pair const &pair);
+    void replace_with_pair(size_t idx, rect_pair const &pair);
 };
 
 const Vector operator+(Vector v1, Vector const &v2);

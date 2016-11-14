@@ -65,15 +65,15 @@ rect_pair Rectangle::split_vertically(int place) {
 
 
 Rectangle &Rectangles::operator[](size_t i) {
-    assert(i < this->size() && i >= 0);
+    assert(i < size() && i >= 0);
     return _rectangles[i];
 }
 
 bool Rectangles::operator==(Rectangles const &others) const {
-    if (this->size() != others.size()) {
+    if (size() != others.size()) {
         return false;
     }
-    for (size_t i = 0; i < this->size(); i++) {
+    for (size_t i = 0; i < size(); i++) {
         if (!((*this)[i] == others[i])) {
             return false;
         }
@@ -82,7 +82,7 @@ bool Rectangles::operator==(Rectangles const &others) const {
 }
 
 Rectangles &Rectangles::operator+=(Vector const &vec) {
-    for (size_t i = 0; i < this->size(); i++) {
+    for (size_t i = 0; i < size(); i++) {
         (*this)[i] += vec;
     }
     return *this;

@@ -46,7 +46,7 @@ Rectangle &Rectangle::operator+=(Vector const &vec) {
 }
 
 rect_pair Rectangle::split_horizontally(int place) {
-    assert(place < _height);
+    assert(place > 0 && place < _height);
     Rectangle r1(_width, place, _pos);
 
     Position upperPos(_pos.x(), _pos.y() + place);
@@ -55,7 +55,7 @@ rect_pair Rectangle::split_horizontally(int place) {
 }
 
 rect_pair Rectangle::split_vertically(int place) {
-    assert(place < _width);
+    assert(place > 0 && place < _width);
     Rectangle r1(place, _height, _pos);
 
     Position rightPos(_pos.x() + place, _pos.y());

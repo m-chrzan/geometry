@@ -62,14 +62,6 @@ public:
                                                          height,
                                                          Position::origin()) {}
 
-    Rectangle(Rectangle const &rect) : _width(rect._width),
-                                       _height(rect._height), _pos(rect._pos) {}
-
-    Rectangle(Rectangle &&rect) : _width(rect._width), _height(rect._height),
-                                  _pos(std::move(rect._pos)) {}
-
-    Rectangle &operator=(Rectangle &&rect);
-
     int32_t width() const { return _width; }
 
     int32_t height() const { return _height; }
@@ -101,10 +93,6 @@ private:
 class Rectangles {
 public:
     Rectangles(std::initializer_list<Rectangle> rects) : _rectangles(rects) {}
-
-    Rectangles(Rectangles const &rs) : _rectangles(rs._rectangles) {}
-
-    Rectangles(Rectangles &&rs) : _rectangles(std::move(rs._rectangles)) {}
 
     Rectangles() {}
 

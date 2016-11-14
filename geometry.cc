@@ -28,13 +28,6 @@ Position const &Position::origin() {
     return o;
 }
 
-Rectangle &Rectangle::operator=(Rectangle &&rect) {
-    _pos = std::move(rect._pos);
-    _width = rect._width;
-    _height = rect._height;
-    return *this;
-}
-
 bool Rectangle::operator==(Rectangle const &other) const {
     return _width == other._width &&
            _height == other._height &&

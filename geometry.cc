@@ -36,7 +36,8 @@ Rectangle &Rectangle::operator=(Rectangle &&rect) {
 }
 
 bool Rectangle::operator==(Rectangle const &other) const {
-    return _width == other._width && _height == other._height &&
+    return _width == other._width &&
+           _height == other._height &&
            _pos == other._pos;
 }
 
@@ -137,15 +138,17 @@ Rectangles operator+(Vector const &v, Rectangles rs) {
 }
 
 Rectangle merge_horizontally(Rectangle const &rect1, Rectangle const &rect2) {
-    assert(rect1.pos() + Vector(0, rect1.height()) == rect2.pos()
-           && rect1.width() == rect2.width());
-    return Rectangle(rect1.width(), rect1.height() + rect2.height(),
+    assert(rect1.pos() + Vector(0, rect1.height()) == rect2.pos() &&
+           rect1.width() == rect2.width());
+    return Rectangle(rect1.width(),
+                     rect1.height() + rect2.height(),
                      rect1.pos());
 }
 
 Rectangle merge_vertically(Rectangle const &rect1, Rectangle const &rect2) {
-    assert(rect1.pos() + Vector(rect1.width(), 0) == rect2.pos()
-           && rect1.height() == rect2.height());
-    return Rectangle(rect1.width() + rect2.width(), rect1.height(),
+    assert(rect1.pos() + Vector(rect1.width(), 0) == rect2.pos() &&
+           rect1.height() == rect2.height());
+    return Rectangle(rect1.width() + rect2.width(),
+                     rect1.height(),
                      rect1.pos());
 }

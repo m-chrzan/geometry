@@ -22,7 +22,7 @@ void testRectanglesConstructors() {
     checkEqual<Rectangle>(copy[1], r2, "First Rectangle correct.");
     checkEqual<Rectangle>(copy[2], r3, "First Rectangle correct.");
 
-    Rectangles move(Rectangles { r1, r2, r3 });
+    Rectangles move(std::move(Rectangles { r1, r2, r3 }));
     checkEqual<int32_t>(move.size(), 3, "Set size correctly.");
     checkEqual<Rectangle>(move[0], r1, "First Rectangle correct.");
     checkEqual<Rectangle>(move[1], r2, "First Rectangle correct.");

@@ -17,6 +17,8 @@ class AbstractPair {
 public:
     AbstractPair(int32_t x, int32_t y) : _x(x), _y(y) {}
 
+    AbstractPair(AbstractPair const &pair) = default;
+
     virtual ~AbstractPair() = 0;
 
     int32_t x() const { return _x; }
@@ -38,6 +40,8 @@ class Position : public AbstractPair<Position> {
 public:
     Position(int32_t x, int32_t y) : AbstractPair(x, y) {}
 
+    Position &operator=(Position const &pos) = default;
+
     ~Position() {}
 
     static Position const &origin();
@@ -46,6 +50,8 @@ public:
 class Vector : public AbstractPair<Vector> {
 public:
     Vector(int32_t x, int32_t y) : AbstractPair(x, y) {}
+
+    Vector &operator=(Vector const &vect) = default;
 
     ~Vector() {}
 };
@@ -62,6 +68,10 @@ public:
     Rectangle(int32_t width, int32_t height) : Rectangle(width,
                                                          height,
                                                          Position::origin()) {}
+
+    Rectangle(Rectangle const &rect) = default;
+
+    Rectangle &operator=(Rectangle const &rect) = default;
 
     int32_t width() const { return _width; }
 
@@ -96,6 +106,14 @@ public:
     Rectangles(std::initializer_list<Rectangle> rects) : _rectangles(rects) {}
 
     Rectangles() {}
+
+    Rectangles(Rectangles const &rects) = default;
+
+    Rectangles(Rectangles &&rects) = default;
+
+    Rectangles &operator=(Rectangles const &rects) = default;
+
+    Rectangles &operator=(Rectangles &&rects) = default;
 
     size_t size() const { return _rectangles.size(); };
 

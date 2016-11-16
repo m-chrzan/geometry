@@ -7,9 +7,6 @@
 #include <utility>
 #include <vector>
 
-#define rect_vec std::vector<Rectangle>
-#define rect_pair std::pair<Rectangle, Rectangle>
-
 class Vector;
 
 template<class T>
@@ -89,9 +86,9 @@ public:
 
     int32_t area() const { return _width * _height; }
 
-    rect_pair split_horizontally(int32_t place);
+    std::pair<Rectangle, Rectangle> split_horizontally(int32_t place);
 
-    rect_pair split_vertically(int32_t place);
+    std::pair<Rectangle, Rectangle> split_vertically(int32_t place);
 
     ~Rectangle() {}
 
@@ -130,9 +127,9 @@ public:
     ~Rectangles() {}
 
 private:
-    rect_vec _rectangles;
+    std::vector<Rectangle> _rectangles;
     Rectangle operator[](size_t i) const { return _rectangles.at(i); };
-    void replace_with_pair(size_t idx, rect_pair const &pair);
+    void replace_with_pair(size_t idx, std::pair<Rectangle, Rectangle> const &pair);
 };
 
 const Vector operator+(Vector v1, Vector const &v2);

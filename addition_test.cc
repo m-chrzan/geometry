@@ -9,9 +9,9 @@ void positionPlusVector() {
 
     checkEqual<Position>(p + v, Position(26, -1), "Position + Vector ok.");
     checkEqual<Position>(v + p, Position(26, -1), "Vector + Position ok.");
-    checkEqual<Position>(std::move(v) + std::move(p), Position(26, -1), "Adding rvalues ok.");
     checkEqual<Position>(p, Position(3, 4), "Position unchanged");
     checkEqual<Vector>(v, Vector(23, -5), "Position unchanged");
+    checkEqual<Position>(std::move(v) + std::move(p), Position(26, -1), "Adding rvalues ok.");
 
     finishTest();
 }
@@ -24,10 +24,10 @@ void vectorPlusVector() {
 
     checkEqual<Vector>(v1 + v2, Vector(26, -1), "Vector + Vector ok.");
     checkEqual<Vector>(v2 + v1, Vector(26, -1), "Addition is commutative.");
-    checkEqual<Vector>(std::move(v1) + std::move(v2), Vector(26, -1),
-                       "Adding rvalues ok.");
     checkEqual<Vector>(v1, Vector(3, 4), "First vector unchanged.");
     checkEqual<Vector>(v2, Vector(23, -5), "Second vector unchanged.");
+    checkEqual<Vector>(std::move(v1) + std::move(v2), Vector(26, -1),
+                       "Adding rvalues ok.");
 
     finishTest();
 }
@@ -42,11 +42,11 @@ void rectanglePlusVector() {
             "Rectangle + Vector ok.");
     checkEqual<Rectangle>(v + r, Rectangle(23, 43, Position(-52, 41)),
             "Vector + Rectangle ok.");
-    checkEqual<Rectangle>(std::move(v) + std::move(r),
-            Rectangle(23, 43, Position(-52, 41)), "Adding rvalues ok.");
     checkEqual<Rectangle>(r, Rectangle(23, 43, Position(-10, 28)),
             "Rectangle unchanged.");
     checkEqual<Vector>(v, Vector(-42, 13), "Vector unchanged.");
+    checkEqual<Rectangle>(std::move(v) + std::move(r),
+            Rectangle(23, 43, Position(-52, 41)), "Adding rvalues ok.");
 
     finishTest();
 }
@@ -68,17 +68,17 @@ void rectanglesPlusVector() {
                            Rectangle(1, 2, Position(-2, -1)),
                            Rectangle(2, 42, Position(54, 4))},
                            "Vector + Rectangles ok.");
-    checkEqual<Rectangles>(std::move(v) + std::move(rs),
-                           Rectangles{Rectangle(12, 13, Position(-1, 1)),
-                           Rectangle(1, 2, Position(-2, -1)),
-                           Rectangle(2, 42, Position(54, 4))},
-                           "Adding rvalues ok.");
     checkEqual<Rectangles>(rs,
                            Rectangles{Rectangle(12, 13),
                            Rectangle(1, 2, Position(-1, -2)),
                            Rectangle(2, 42, Position(55, 3))},
                            "Rectangles unchanged.");
     checkEqual<Vector>(v, Vector(-1, 1), "Vector unchanged.");
+    checkEqual<Rectangles>(std::move(v) + std::move(rs),
+                           Rectangles{Rectangle(12, 13, Position(-1, 1)),
+                           Rectangle(1, 2, Position(-2, -1)),
+                           Rectangle(2, 42, Position(54, 4))},
+                           "Adding rvalues ok.");
 
     finishTest();
 }

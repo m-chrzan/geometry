@@ -58,7 +58,7 @@ Rectangle &Rectangles::operator[](size_t i) {
 }
 
 bool Rectangles::operator==(Rectangles const &others) const {
-    return this->_rectangles == others._rectangles;
+    return _rectangles == others._rectangles;
 }
 
 Rectangles &Rectangles::operator+=(Vector const &vec) {

@@ -40,18 +40,14 @@ Rectangle &Rectangle::operator+=(Vector const &vec) {
 std::pair<Rectangle, Rectangle> Rectangle::split_horizontally(int32_t place) {
     assert(place > 0 && place < _height);
     Rectangle r1(_width, place, _pos);
-
-    Position upper_pos(_pos.x(), _pos.y() + place);
-    Rectangle r2(_width, _height - place, upper_pos);
+    Rectangle r2(_width, _height - place, _pos + Vector(0, place));
     return std::make_pair(r1, r2);
 }
 
 std::pair<Rectangle, Rectangle> Rectangle::split_vertically(int32_t place) {
     assert(place > 0 && place < _width);
     Rectangle r1(place, _height, _pos);
-
-    Position right_pos(_pos.x() + place, _pos.y());
-    Rectangle r2(_width - place, _height, right_pos);
+    Rectangle r2(_width - place, _height, _pos + Vector(place, 0));
     return std::make_pair(r1, r2);
 }
 

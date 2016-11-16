@@ -62,15 +62,7 @@ Rectangle &Rectangles::operator[](size_t i) {
 }
 
 bool Rectangles::operator==(Rectangles const &others) const {
-    if (size() != others.size()) {
-        return false;
-    }
-    for (size_t i = 0; i < size(); i++) {
-        if (!((*this)[i] == others[i])) {
-            return false;
-        }
-    }
-    return true;
+    return this->_rectangles == others._rectangles;
 }
 
 Rectangles &Rectangles::operator+=(Vector const &vec) {
@@ -81,8 +73,8 @@ Rectangles &Rectangles::operator+=(Vector const &vec) {
 }
 
 void Rectangles::replace_with_pair(size_t idx, std::pair<Rectangle, Rectangle> const &pair) {
+    (*this)[idx] = pair.first;
     auto it = _rectangles.begin();
-    it[idx] = pair.first;
     _rectangles.insert(it + idx + 1, pair.second);
 }
 

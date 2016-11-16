@@ -33,7 +33,6 @@ void testRectangleEquality() {
     Rectangle r(42, 24, Position(0, 0));
     Rectangle r2(r);
     Rectangle s(42, 24, Position::origin());
-    Rectangle t(42, 24);
 
     checkEqual<Rectangle>(r, r, "A Rectangle is equal to itself.");
     checkEqual<Rectangle>(r, r2, "A Rectangle is equal to its copy.");
@@ -142,8 +141,7 @@ void testRectangleSplit() {
                          "Position of right rectangle further right than original.");
 
     Rectangle p(3, 5, Position(-2, 3));
-    std::pair <Rectangle, Rectangle> pSplitHorizontally = p.split_horizontally(
-            2);
+    std::pair <Rectangle, Rectangle> pSplitHorizontally = p.split_horizontally(2);
     checkEqual<int32_t>(pSplitHorizontally.first.height(), 2,
                           "Height of lower rectangle correct.");
     checkEqual<int32_t>(pSplitHorizontally.second.height(), 5 - 2,

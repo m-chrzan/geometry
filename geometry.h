@@ -128,7 +128,6 @@ public:
 
 private:
     std::vector<Rectangle> _rectangles;
-    Rectangle operator[](size_t i) const { return _rectangles.at(i); };
     void replace_with_pair(size_t idx, std::pair<Rectangle, Rectangle> const &pair);
 };
 

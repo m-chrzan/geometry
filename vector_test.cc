@@ -26,6 +26,7 @@ void testVectorEquality() {
     Vector v(42, 0);
     Vector v2(v);
     Vector w(42, 0);
+
     checkEqual<Vector>(v, v, "A Vector is equal to itself.");
     checkEqual<Vector>(v, v2,
             "Copy constructor creates equivalent Vector.");

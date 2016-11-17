@@ -86,9 +86,9 @@ public:
 
     int32_t area() const { return _width * _height; }
 
-    std::pair<Rectangle, Rectangle> split_horizontally(int32_t place);
+    std::pair<Rectangle, Rectangle> split_horizontally(int32_t place) const;
 
-    std::pair<Rectangle, Rectangle> split_vertically(int32_t place);
+    std::pair<Rectangle, Rectangle> split_vertically(int32_t place) const;
 
     ~Rectangle() {}
 

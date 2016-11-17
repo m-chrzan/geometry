@@ -37,14 +37,14 @@ Rectangle &Rectangle::operator+=(Vector const &vec) {
     return *this;
 }
 
-std::pair<Rectangle, Rectangle> Rectangle::split_horizontally(int32_t place) {
+std::pair<Rectangle, Rectangle> Rectangle::split_horizontally(int32_t place) const {
     assert(place > 0 && place < _height);
     Rectangle r1(_width, place, _pos);
     Rectangle r2(_width, _height - place, _pos + Vector(0, place));
     return std::make_pair(r1, r2);
 }
 
-std::pair<Rectangle, Rectangle> Rectangle::split_vertically(int32_t place) {
+std::pair<Rectangle, Rectangle> Rectangle::split_vertically(int32_t place) const {
     assert(place > 0 && place < _width);
     Rectangle r1(place, _height, _pos);
     Rectangle r2(_width - place, _height, _pos + Vector(place, 0));

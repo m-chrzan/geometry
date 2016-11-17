@@ -120,15 +120,15 @@ public:
 
     Rectangles &operator+=(Vector const &vec);
 
-    void split_horizontally(size_t idx, int32_t place);
+    void split_horizontally(size_t i, int32_t place);
 
-    void split_vertically(size_t idx, int32_t place);
+    void split_vertically(size_t i, int32_t place);
 
     ~Rectangles() {}
 
 private:
     std::vector<Rectangle> _rectangles;
-    void replace_with_pair(size_t idx, std::pair<Rectangle, Rectangle> const &pair);
+    void replace_with_pair(size_t i, std::pair<Rectangle, Rectangle> const &pair);
 };
 
 const Vector operator+(Vector v1, Vector const &v2);

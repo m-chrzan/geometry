@@ -68,22 +68,22 @@ Rectangles &Rectangles::operator+=(Vector const &vec) {
     return *this;
 }
 
-void Rectangles::replace_with_pair(size_t idx, std::pair<Rectangle, Rectangle> const &pair) {
-    (*this)[idx] = pair.first;
+void Rectangles::replace_with_pair(size_t i, std::pair<Rectangle, Rectangle> const &pair) {
+    (*this)[i] = pair.first;
     auto it = _rectangles.begin();
-    _rectangles.insert(it + idx + 1, pair.second);
+    _rectangles.insert(it + i + 1, pair.second);
 }
 
-void Rectangles::split_horizontally(size_t idx, int32_t place) {
-    Rectangle r = _rectangles[idx];
+void Rectangles::split_horizontally(size_t i, int32_t place) {
+    Rectangle r = _rectangles[i];
     std::pair<Rectangle, Rectangle> splitted = r.split_horizontally(place);
-    replace_with_pair(idx, splitted);
+    replace_with_pair(i, splitted);
 }
 
-void Rectangles::split_vertically(size_t idx, int32_t place) {
-    Rectangle r = _rectangles[idx];
+void Rectangles::split_vertically(size_t i, int32_t place) {
+    Rectangle r = _rectangles[i];
     std::pair<Rectangle, Rectangle> splitted = r.split_vertically(place);
-    replace_with_pair(idx, splitted);
+    replace_with_pair(i, splitted);
 }
 
 const Vector operator+(Vector v1, Vector const &v2) {
